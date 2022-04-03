@@ -6,14 +6,13 @@ public class SharePref {
     private static final String PREF_NAME = "MyPref";
     private Context context;
 
-    SharedPreferences sharedPref = context.getSharedPreferences(PREF_NAME,Context.MODE_PRIVATE);
-    SharedPreferences.Editor editor = sharedPref.edit();
-
     public SharePref(Context context){
         this.context = context;
     }
 
     public void saveInt(String key, int value) {
+        SharedPreferences sharedPref = context.getSharedPreferences(PREF_NAME,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
         editor.putInt(key, value);
         editor.commit();
     }
@@ -24,6 +23,8 @@ public class SharePref {
     }
 
     public void saveString( String key, String value) {
+        SharedPreferences sharedPref = context.getSharedPreferences(PREF_NAME,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(key, value);
         editor.commit();
     }
@@ -34,6 +35,8 @@ public class SharePref {
     }
 
     public void saveBoolean(String key, Boolean value) {
+        SharedPreferences sharedPref = context.getSharedPreferences(PREF_NAME,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
         editor.putBoolean(key, value);
         editor.commit();
     }
