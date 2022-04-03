@@ -37,7 +37,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         String password = passwordTxt.getText().toString();
         String confirmPassword = confirmPasswordTxt.getText().toString();
-
         if(password != confirmPassword) {
             Toast.makeText(this, "password", Toast.LENGTH_SHORT);
             return;
