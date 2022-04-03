@@ -21,6 +21,8 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.milamix.wondercal.sharePref.SharePref;
+import com.example.milamix.wondercal.util.Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,11 +32,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
+    Intent itn;
+    SharePref sharePref = new SharePref(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
     }
 
     public void btn_Login(View view) throws JSONException {
@@ -44,6 +49,11 @@ public class LoginActivity extends AppCompatActivity {
         String email = email_txt.getText().toString();
         String password = password_txt.getText().toString();
 
+        if(!Utils.isValidEmail(email)) {
+            Toast.makeText(this, "email", Toast.LENGTH_SHORT);
+            return;
+        }
+
         JSONObject obj = new JSONObject();
         obj.put("email", email);
         obj.put("password", password);
@@ -52,15 +62,33 @@ public class LoginActivity extends AppCompatActivity {
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST,url+"/users/login",obj,
                 new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(JSONObject response) {  // if OK
-                        Log.d("HTTPResponse",response.toString());
+                    public void onResponse(JSONObject response) {
+                        String token = "";
+                        String time = "";
 
+                        Utils.Log(response.toString());
+
+                        JSONObject data = null;
+                        try {
+                            data = response.getJSONObject("data");
+                            token = data.getString("token");
+                            time = data.getString("time");
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        sharePref.saveString("token",token);
+                        sharePref.saveBoolean("isLogin",true);
+                        sharePref.saveString("lastLogin",time);
+
+                        swapToMainPage();
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.d("HTTPResponse", error.toString());
+                        Utils.Log(error.toString());
                     }
                 }){
             @Override
@@ -68,18 +96,22 @@ public class LoginActivity extends AppCompatActivity {
                 return "application/json; charset=utf-8";
             }
         };
-
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(stringRequest);
     }
 
     public void btn_Register(View view) {
-
+        itn = new Intent(this, RegisterActivity.class);
+        startActivity(itn);
     }
 
     public void btn_Forgotpass(View view) {
-        Intent itn = new Intent(this, ForgotActivity.class);
+        itn = new Intent(this, ForgotActivity.class);
         startActivity(itn);
+    }
 
+    private void swapToMainPage(){
+        itn = new Intent(this, MainActivity.class);
+        startActivity(itn);
     }
 }
