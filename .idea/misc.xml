@@ -8,13 +8,17 @@
         <entry key="..\:/Users/s6103051613116/WonderCal/app/src/main/res/drawable/ic_baseline_restaurant_24.xml" value="0.2916666666666667" />
         <entry key="..\:/Users/s6103051613116/WonderCal/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.2916666666666667" />
         <entry key="..\:/Users/s6103051613116/WonderCal/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2916666666666667" />
+        <entry key="..\:/Users/s6103051613116/WonderCal/app/src/main/res/layout/activity_landing.xml" value="0.20787037037037037" />
         <entry key="..\:/Users/s6103051613116/WonderCal/app/src/main/res/layout/activity_main.xml" value="0.18" />
-        <entry key="..\:/Users/s6103051613116/WonderCal/app/src/main/res/layout/fragment_main.xml" value="0.2" />
-        <entry key="..\:/Users/s6103051613116/WonderCal/app/src/main/res/layout/fragment_restaurant.xml" value="0.25" />
+        <entry key="..\:/Users/s6103051613116/WonderCal/app/src/main/res/layout/activity_register.xml" value="0.33" />
+        <entry key="..\:/Users/s6103051613116/WonderCal/app/src/main/res/layout/fragment_main.xml" value="0.22" />
+        <entry key="..\:/Users/s6103051613116/WonderCal/app/src/main/res/layout/fragment_register.xml" value="0.14739583333333334" />
+        <entry key="..\:/Users/s6103051613116/WonderCal/app/src/main/res/layout/fragment_restaurant.xml" value="0.18" />
         <entry key="..\:/Users/s6103051613116/WonderCal/app/src/main/res/layout/fragment_search.xml" value="0.2755208333333333" />
         <entry key="..\:/Users/s6103051613116/WonderCal/app/src/main/res/layout/fragment_setting.xml" value="0.2755208333333333" />
-        <entry key="..\:/Users/s6103051613116/WonderCal/app/src/main/res/layout/fragment_settings.xml" value="0.2755208333333333" />
+        <entry key="..\:/Users/s6103051613116/WonderCal/app/src/main/res/layout/fragment_settings.xml" value="0.1" />
         <entry key="..\:/Users/s6103051613116/WonderCal/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2755208333333333" />
+        <entry key="..\:/Users/s6103051613116/WonderCal/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.18981481481481483" />
       </map>
     </option>
   </component>
