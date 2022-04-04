@@ -37,10 +37,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         String password = passwordTxt.getText().toString();
         String confirmPassword = confirmPasswordTxt.getText().toString();
-        if(password != confirmPassword) {
-            Toast.makeText(this, "password", Toast.LENGTH_SHORT);
-            return;
-        }
 
         JSONObject obj = new JSONObject();
         obj.put("username", usernameTxt.getText().toString());
@@ -74,5 +70,6 @@ public class RegisterActivity extends AppCompatActivity {
     private void swapToLoginPage(){
         itn = new Intent(this, LoginActivity.class);
         startActivity(itn);
+        finish();
     }
 }

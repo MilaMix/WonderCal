@@ -37,15 +37,6 @@ public class ForgotActivity extends AppCompatActivity {
         String newPassword = new_passwordTxt.getText().toString();
         String email = emailTxt.getText().toString();
 
-        if(password == newPassword) {
-            Toast.makeText(this, "password", Toast.LENGTH_SHORT);
-            return;
-        }
-        if(!Utils.isValidEmail(email)) {
-            Toast.makeText(this, "email", Toast.LENGTH_SHORT);
-            return;
-        }
-
         JSONObject obj = new JSONObject();
         obj.put("email", email);
         obj.put("password", password);
@@ -78,5 +69,6 @@ public class ForgotActivity extends AppCompatActivity {
     private void swapToLoginPage(){
         itn = new Intent(this, LoginActivity.class);
         startActivity(itn);
+        finish();
     }
 }

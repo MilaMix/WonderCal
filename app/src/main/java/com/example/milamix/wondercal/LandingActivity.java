@@ -41,5 +41,6 @@ public class LandingActivity extends AppCompatActivity {
             itn = new Intent(this, LoginActivity.class);
         }
         startActivity(itn);
+        finish();
     }
 }

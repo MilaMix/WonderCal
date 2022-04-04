@@ -39,7 +39,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
     }
 
     public void btn_Login(View view) throws JSONException {
@@ -48,11 +47,6 @@ public class LoginActivity extends AppCompatActivity {
 
         String email = email_txt.getText().toString();
         String password = password_txt.getText().toString();
-
-        if(!Utils.isValidEmail(email)) {
-            Toast.makeText(this, "email", Toast.LENGTH_SHORT);
-            return;
-        }
 
         JSONObject obj = new JSONObject();
         obj.put("email", email);
@@ -113,5 +107,6 @@ public class LoginActivity extends AppCompatActivity {
     private void swapToMainPage(){
         itn = new Intent(this, MainActivity.class);
         startActivity(itn);
+        finish();
     }
 }
