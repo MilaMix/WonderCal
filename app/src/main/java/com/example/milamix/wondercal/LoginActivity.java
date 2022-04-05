@@ -82,7 +82,18 @@ public class LoginActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Utils.Log(error.toString());
+                        String body="";
+                        JSONObject bodyError;
+                        String statusCode = String.valueOf(error.networkResponse.statusCode);
+                        if(error.networkResponse.data!=null) {
+                            try {
+                                body = new String(error.networkResponse.data,"UTF-8");
+                                bodyError = new JSONObject(body.toString());
+                                Utils.Log(bodyError.getString("error"));
+                            } catch (UnsupportedEncodingException | JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
                     }
                 }){
             @Override
