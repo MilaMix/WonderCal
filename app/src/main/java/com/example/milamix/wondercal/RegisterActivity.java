@@ -65,6 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
         };
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(stringRequest);
+
     }
 
     private void swapToLoginPage(){
