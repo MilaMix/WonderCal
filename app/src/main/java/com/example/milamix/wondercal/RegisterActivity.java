@@ -20,6 +20,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class RegisterActivity extends AppCompatActivity {
     Intent itn;
 
@@ -65,7 +67,6 @@ public class RegisterActivity extends AppCompatActivity {
         };
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(stringRequest);
-
     }
 
     private void swapToLoginPage(){
