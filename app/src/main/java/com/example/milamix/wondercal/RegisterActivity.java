@@ -20,6 +20,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -50,14 +51,32 @@ public class RegisterActivity extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Utils.Log(response.toString());
-                        swapToLoginPage();
+                        try {
+                            String message = response.getString("message");
+                            Utils.Log(response.toString());
+
+                            swapToLoginPage();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Utils.Log(error.toString());
+                        if(error.networkResponse.data!=null) {
+                            try {
+                                String body = new String(error.networkResponse.data,"UTF-8");
+                                JSONObject bodyError = new JSONObject(body.toString());
+
+                                Utils.Log(bodyError.getString("error"));
+                                String message = bodyError.getString("error");
+
+                            } catch (UnsupportedEncodingException | JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
                     }
                 }){
             @Override

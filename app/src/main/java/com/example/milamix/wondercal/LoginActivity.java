@@ -57,39 +57,36 @@ public class LoginActivity extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        String token = "";
-                        String time = "";
 
-                        Utils.Log(response.toString());
-
-                        JSONObject data = null;
                         try {
-                            data = response.getJSONObject("data");
-                            token = data.getString("token");
-                            time = data.getString("time");
+                            String message = response.getString("message");
+                            Utils.Log(response.toString());
 
+                            JSONObject data = response.getJSONObject("data");
+                            String token = data.getString("token");
+                            String time = data.getString("time");
+
+                            sharePref.saveString("token",token);
+                            sharePref.saveBoolean("isLogin",true);
+                            sharePref.saveString("lastLogin",time);
+
+                            swapToMainPage();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
-                        sharePref.saveString("token",token);
-                        sharePref.saveBoolean("isLogin",true);
-                        sharePref.saveString("lastLogin",time);
-
-                        swapToMainPage();
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        String body="";
-                        JSONObject bodyError;
-                        String statusCode = String.valueOf(error.networkResponse.statusCode);
                         if(error.networkResponse.data!=null) {
                             try {
-                                body = new String(error.networkResponse.data,"UTF-8");
-                                bodyError = new JSONObject(body.toString());
+                                String body = new String(error.networkResponse.data,"UTF-8");
+                                JSONObject bodyError = new JSONObject(body.toString());
+
                                 Utils.Log(bodyError.getString("error"));
+                                String message = bodyError.getString("error");
+
                             } catch (UnsupportedEncodingException | JSONException e) {
                                 e.printStackTrace();
                             }
