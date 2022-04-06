@@ -31,6 +31,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class LoginActivity extends AppCompatActivity {
     Intent itn;
     SharePref sharePref = new SharePref(this);
@@ -66,6 +68,10 @@ public class LoginActivity extends AppCompatActivity {
                             String token = data.getString("token");
                             String time = data.getString("time");
 
+                            new SweetAlertDialog(LoginActivity.this)
+                                    .setTitleText(message)
+                                    .show();
+
                             sharePref.saveString("token",token);
                             sharePref.saveBoolean("isLogin",true);
                             sharePref.saveString("lastLogin",time);
@@ -79,6 +85,8 @@ public class LoginActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        int code = error.networkResponse.statusCode;
+                        Utils.Log(String.valueOf(code));
                         if(error.networkResponse.data!=null) {
                             try {
                                 String body = new String(error.networkResponse.data,"UTF-8");
@@ -87,6 +95,10 @@ public class LoginActivity extends AppCompatActivity {
                                 Utils.Log(bodyError.getString("error"));
                                 String message = bodyError.getString("error");
 
+                                new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Oops...")
+                                        .setContentText(message)
+                                        .show();
                             } catch (UnsupportedEncodingException | JSONException e) {
                                 e.printStackTrace();
                             }

@@ -54,7 +54,9 @@ public class RegisterActivity extends AppCompatActivity {
                         try {
                             String message = response.getString("message");
                             Utils.Log(response.toString());
-
+                            new SweetAlertDialog(RegisterActivity.this)
+                                    .setTitleText(message)
+                                    .show();
                             swapToLoginPage();
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -72,7 +74,10 @@ public class RegisterActivity extends AppCompatActivity {
 
                                 Utils.Log(bodyError.getString("error"));
                                 String message = bodyError.getString("error");
-
+                                new SweetAlertDialog(RegisterActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Oops...")
+                                        .setContentText(message)
+                                        .show();
                             } catch (UnsupportedEncodingException | JSONException e) {
                                 e.printStackTrace();
                             }
