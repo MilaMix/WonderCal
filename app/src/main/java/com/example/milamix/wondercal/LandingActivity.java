@@ -8,6 +8,8 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 
 import com.example.milamix.wondercal.databinding.ActivityMainBinding;
 import com.example.milamix.wondercal.sharePref.SharePref;
@@ -20,6 +22,7 @@ public class LandingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing);
+
         int secs = 2; // Delay in seconds
         Utils.delay(secs, new Utils.DelayCallback() {
             @Override
@@ -27,6 +30,9 @@ public class LandingActivity extends AppCompatActivity {
                 initLoading();
             }
         });
+    }
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, int j){
+
     }
 
     private void initLoading(){
