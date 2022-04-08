@@ -32,7 +32,7 @@
         android:backgroundTint="@color/Greyform"
         android:ems="10"
         android:hint="Password"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
         android:textSize="14sp"
@@ -57,6 +57,7 @@
             android:layout_marginEnd="61dp"
             android:padding="10dp"
             android:src="@drawable/logo" />
+
     </RelativeLayout>
 
 
@@ -97,7 +98,6 @@
         android:textColor="#0B0A0A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.433"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.923" />
@@ -127,7 +127,7 @@
         android:backgroundTint="@color/Greyform"
         android:ems="10"
         android:hint="Confirm Password"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
         android:textSize="14sp"
