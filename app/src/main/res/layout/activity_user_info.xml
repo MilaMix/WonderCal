@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/purple_200"
+    tools:context=".util.UserInfoActivity">
+
+
+    <EditText
+        android:id="@+id/Weight"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="108dp"
+        android:backgroundTint="@color/Greyform"
+        android:ems="10"
+        android:hint="Weight"
+        android:inputType="textPersonName"
+        android:text=""
+        android:textColor="@color/black"
+
+        android:textColorHint="@color/Greyform"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/Height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/Greyform"
+        android:ems="10"
+        android:hint="Height"
+        android:text=""
+        android:textColor="@color/black"
+        android:textColorHint="@color/Greyform"
+        android:textSize="16sp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Weight" />
+
+    <EditText
+        android:id="@+id/Age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/Greyform"
+        android:ems="10"
+        android:hint="Age"
+        android:inputType="textPersonName"
+        android:text=""
+
+        android:textColor="@color/black"
+        android:textColorHint="@color/Greyform"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Height" />
+
+    <EditText
+        android:id="@+id/Gender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/Greyform"
+        android:ems="10"
+        android:hint="Gender"
+        android:inputType="textPersonName"
+        android:text=""
+        android:textColor="@color/black"
+
+        android:textColorHint="@color/Greyform"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Age" />
+
+    <Spinner
+        android:id="@+id/SpinActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:entries="@array/Activity"
+        android:backgroundTintMode=""
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Gender" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
