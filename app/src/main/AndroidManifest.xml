@@ -14,6 +14,7 @@
         android:theme="@style/Theme.WonderCal"
         android:usesCleartextTraffic="true">
         <activity
+<<<<<<< HEAD
             android:name=".util.UserInfoActivity"
             android:exported="true" >
             <intent-filter>
@@ -22,16 +23,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+=======
+            android:name=".UserInfoActivity"
+            android:exported="false" />
+>>>>>>> origin/feature/forgot
         <activity
             android:name=".ForgotActivity"
             android:exported="true" />
         <activity
             android:name=".LoginActivity"
-            android:exported="true" />
+            android:exported="true" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
         <activity
             android:name=".LandingActivity"
+<<<<<<< HEAD
             android:exported="true"/>
 
+=======
+            android:exported="true">
+
+        </activity>
+>>>>>>> origin/feature/forgot
         <activity
             android:name=".RegisterActivity"
             android:exported="true" />
@@ -40,10 +56,11 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
 
 </manifest>
+
+
