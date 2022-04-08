@@ -11,5 +11,13 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
-    <string name="api_endpoint">http://192.168.1.102:3000</string>
+    <string name="api_endpoint">http://192.168.1.101:3000</string>
+    <string-array name="Activity">
+        <item>ertretretertre</item>
+        <item>xfsdfdfdfsdf</item>
+        <item>ertretrdsftre</item>
+        <item>ertretretertre</item>
+        <item>ertretretertre</item>
+
+    </string-array>
 </resources>
