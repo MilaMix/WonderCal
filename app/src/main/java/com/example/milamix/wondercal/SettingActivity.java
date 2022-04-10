@@ -1,13 +1,9 @@
-package com.example.milamix.wondercal.util;
+package com.example.milamix.wondercal;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.milamix.wondercal.R;
-import com.example.milamix.wondercal.RegisterActivity;
 
 public class SettingActivity extends AppCompatActivity {
     @Override

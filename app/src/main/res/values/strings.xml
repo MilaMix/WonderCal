@@ -15,9 +15,6 @@
     <string name="login_failed">"Login failed"</string>
     <string name="api_endpoint">http://192.168.1.101:3000</string>
 
-<<<<<<< HEAD
-=======
-    </string-array>
     <string name="title_activity_settings">SettingsActivity</string>
 
     <!-- Preference Titles -->
@@ -31,8 +28,6 @@
     <!-- Sync Preferences -->
     <string name="sync_title">Sync email periodically</string>
     <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails</string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
->>>>>>> origin/feature/forgot
 </resources>

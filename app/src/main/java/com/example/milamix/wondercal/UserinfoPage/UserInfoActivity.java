@@ -1,4 +1,4 @@
-package com.example.milamix.wondercal;
+package com.example.milamix.wondercal.UserinfoPage;
 
 import androidx.appcompat.app.AppCompatActivity;
 

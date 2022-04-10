@@ -1,26 +1,23 @@
-package com.example.milamix.wondercal;
+package com.example.milamix.wondercal.LoginPage;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.milamix.wondercal.ForgotPage.ForgotActivity;
+import com.example.milamix.wondercal.MainPage.MainActivity;
+import com.example.milamix.wondercal.R;
+import com.example.milamix.wondercal.RegisterPage.RegisterActivity;
+import com.example.milamix.wondercal.TestData.Test;
 import com.example.milamix.wondercal.sharePref.SharePref;
 import com.example.milamix.wondercal.util.Utils;
 
@@ -28,8 +25,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.Map;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -49,6 +44,12 @@ public class LoginActivity extends AppCompatActivity {
 
         String email = email_txt.getText().toString();
         String password = password_txt.getText().toString();
+
+        Test t1 = new Test();
+        if(t1.LoginTest(email,password)){
+            swapToMainPage();
+            return;
+        }
 
         JSONObject obj = new JSONObject();
         obj.put("email", email);

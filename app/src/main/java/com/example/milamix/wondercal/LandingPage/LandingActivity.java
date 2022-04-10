@@ -1,17 +1,15 @@
-package com.example.milamix.wondercal;
+package com.example.milamix.wondercal.LandingPage;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 
-import com.example.milamix.wondercal.databinding.ActivityMainBinding;
+import com.example.milamix.wondercal.LoginPage.LoginActivity;
+import com.example.milamix.wondercal.MainPage.MainActivity;
+import com.example.milamix.wondercal.R;
 import com.example.milamix.wondercal.sharePref.SharePref;
 import com.example.milamix.wondercal.util.Utils;
 

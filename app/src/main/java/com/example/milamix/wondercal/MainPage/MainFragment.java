@@ -1,4 +1,4 @@
-package com.example.milamix.wondercal;
+package com.example.milamix.wondercal.MainPage;
 
 import android.app.DatePickerDialog;
 import android.graphics.Color;
@@ -6,19 +6,16 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
-import com.example.milamix.wondercal.util.Utils;
+import com.example.milamix.wondercal.R;
 
-import java.text.DateFormat;
 import java.util.Calendar;
 
 
