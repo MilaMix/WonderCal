@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import com.example.milamix.wondercal.LoginPage.LoginActivity;
 import com.example.milamix.wondercal.MainPage.MainActivity;
 import com.example.milamix.wondercal.R;
+import com.example.milamix.wondercal.UserinfoPage.LoadingUserInfoActivity;
 import com.example.milamix.wondercal.sharePref.SharePref;
 import com.example.milamix.wondercal.util.Utils;
 
@@ -37,10 +38,10 @@ public class LandingActivity extends AppCompatActivity {
         SharePref sharePref = new SharePref(this);
         Boolean isLogin = sharePref.getBoolean("isLogin");
 
-        Utils.Log(isLogin.toString());
+        Utils.Log("isLogin => "+isLogin.toString());
 
         if (isLogin){
-            itn = new Intent(this, MainActivity.class);
+            itn = new Intent(this, LoadingUserInfoActivity.class);
         }else{
             itn = new Intent(this, LoginActivity.class);
         }

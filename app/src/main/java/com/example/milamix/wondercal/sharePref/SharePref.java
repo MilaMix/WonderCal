@@ -2,12 +2,42 @@ package com.example.milamix.wondercal.sharePref;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class SharePref {
+
     private static final String PREF_NAME = "MyPref";
     private Context context;
 
     public SharePref(Context context){
         this.context = context;
+    }
+
+    public void saveLoginPref(String token,String time,String email){
+        saveString("token",token);
+        saveBoolean("isLogin",true);
+        saveString("email",email);
+        saveString("lastLogin",time);
+    }
+    public void saveLogout(){
+        saveString("token","");
+        saveBoolean("isLogin",false);
+        saveString("lastLogin","");
+    }
+
+    public void saveObj(String key, JSONObject obj){
+        SharedPreferences sharedPref = context.getSharedPreferences(PREF_NAME,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(key, obj.toString());
+        editor.commit();
+    }
+
+    public JSONObject getObj(String key) throws JSONException {
+        SharedPreferences sharedPref = context.getSharedPreferences(PREF_NAME,Context.MODE_PRIVATE);
+        String value = sharedPref.getString(key, "");
+        JSONObject jsonObject = new JSONObject(value);
+        return jsonObject;
     }
 
     public void saveInt(String key, int value) {

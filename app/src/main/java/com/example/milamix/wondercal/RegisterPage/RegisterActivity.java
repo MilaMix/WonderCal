@@ -57,11 +57,13 @@ public class RegisterActivity extends AppCompatActivity {
                             new SweetAlertDialog(RegisterActivity.this)
                                     .setTitleText(message)
                                     .show();
-                            swapToLoginPage();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
+                            Utils.delay(2, new Utils.DelayCallback() {
+                                @Override
+                                public void afterDelay() {
+                                    swapToLoginPage();
+                                }
+                            });
+                        } catch (JSONException e) { }
                     }
                 },
                 new Response.ErrorListener() {
@@ -74,13 +76,12 @@ public class RegisterActivity extends AppCompatActivity {
 
                                 Utils.Log(bodyError.getString("error"));
                                 String message = bodyError.getString("error");
+
                                 new SweetAlertDialog(RegisterActivity.this, SweetAlertDialog.ERROR_TYPE)
                                         .setTitleText("Oops...")
                                         .setContentText(message)
                                         .show();
-                            } catch (UnsupportedEncodingException | JSONException e) {
-                                e.printStackTrace();
-                            }
+                            } catch (UnsupportedEncodingException | JSONException e) { }
                         }
                     }
                 }){

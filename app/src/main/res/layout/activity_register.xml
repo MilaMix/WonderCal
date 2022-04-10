@@ -93,7 +93,7 @@
         android:layout_width="157dp"
         android:layout_height="49dp"
         android:background="@drawable/btnlogin"
-        android:onClick="btn_Login"
+        android:onClick="btn_CreateAccount"
         android:text="Login"
         android:textColor="#0B0A0A"
         app:layout_constraintBottom_toBottomOf="parent"

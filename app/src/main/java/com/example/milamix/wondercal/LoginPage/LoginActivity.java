@@ -18,6 +18,7 @@ import com.example.milamix.wondercal.MainPage.MainActivity;
 import com.example.milamix.wondercal.R;
 import com.example.milamix.wondercal.RegisterPage.RegisterActivity;
 import com.example.milamix.wondercal.TestData.Test;
+import com.example.milamix.wondercal.UserinfoPage.LoadingUserInfoActivity;
 import com.example.milamix.wondercal.sharePref.SharePref;
 import com.example.milamix.wondercal.util.Utils;
 
@@ -69,15 +70,19 @@ public class LoginActivity extends AppCompatActivity {
                             String token = data.getString("token");
                             String time = data.getString("time");
 
+                            sharePref.saveLoginPref(token,time,email);
+
                             new SweetAlertDialog(LoginActivity.this)
                                     .setTitleText(message)
                                     .show();
 
-                            sharePref.saveString("token",token);
-                            sharePref.saveBoolean("isLogin",true);
-                            sharePref.saveString("lastLogin",time);
+                            Utils.delay(1, new Utils.DelayCallback() {
+                                @Override
+                                public void afterDelay() {
+                                    swapToLoadingUserInfoPage();
+                                }
+                            });
 
-                            swapToMainPage();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -96,14 +101,16 @@ public class LoginActivity extends AppCompatActivity {
                                 Utils.Log(bodyError.getString("error"));
                                 String message = bodyError.getString("error");
 
+                                /*
                                 new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.ERROR_TYPE)
                                         .setTitleText("Oops...")
                                         .setContentText(message)
                                         .show();
+                                 */
                             } catch (UnsupportedEncodingException | JSONException e) {
                                 e.printStackTrace();
                             }
-                        }
+                        }else return;
                     }
                 }){
             @Override
@@ -127,6 +134,12 @@ public class LoginActivity extends AppCompatActivity {
 
     private void swapToMainPage(){
         itn = new Intent(this, MainActivity.class);
+        startActivity(itn);
+        finish();
+    }
+
+    private void swapToLoadingUserInfoPage(){
+        itn = new Intent(this, LoadingUserInfoActivity.class);
         startActivity(itn);
         finish();
     }
