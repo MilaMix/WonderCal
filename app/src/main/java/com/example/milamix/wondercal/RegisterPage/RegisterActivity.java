@@ -55,33 +55,41 @@ public class RegisterActivity extends AppCompatActivity {
                             String message = response.getString("message");
                             Utils.Log(response.toString());
                             new SweetAlertDialog(RegisterActivity.this)
-                                    .setTitleText(message)
-                                    .show();
-                            Utils.delay(2, new Utils.DelayCallback() {
+                                    .setContentText("Register")
+                                    .setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
                                 @Override
-                                public void afterDelay() {
+                                public void onClick(SweetAlertDialog sweetAlertDialog) {
                                     swapToLoginPage();
+                                    sweetAlertDialog.dismiss();
                                 }
-                            });
+                            }).show();
                         } catch (JSONException e) { }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        Utils.Log("Response => "+error.toString());
                         if(error.networkResponse.data!=null) {
                             try {
                                 String body = new String(error.networkResponse.data,"UTF-8");
                                 JSONObject bodyError = new JSONObject(body.toString());
 
-                                Utils.Log(bodyError.getString("error"));
+                                Utils.Log("message => "+bodyError.getString("error"));
                                 String message = bodyError.getString("error");
 
                                 new SweetAlertDialog(RegisterActivity.this, SweetAlertDialog.ERROR_TYPE)
                                         .setTitleText("Oops...")
                                         .setContentText(message)
                                         .show();
+                                return;
                             } catch (UnsupportedEncodingException | JSONException e) { }
+                        }else{
+                            new SweetAlertDialog(RegisterActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Oops...")
+                                    .setContentText("Server error")
+                                    .show();
+                            return;
                         }
                     }
                 }){

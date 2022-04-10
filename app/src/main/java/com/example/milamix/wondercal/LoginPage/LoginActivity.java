@@ -92,7 +92,9 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         int code = error.networkResponse.statusCode;
-                        Utils.Log(String.valueOf(code));
+
+                        Utils.Log("Response : "+error.toString());
+                        Utils.Log("responseCode : "+String.valueOf(code));
                         if(error.networkResponse.data!=null) {
                             try {
                                 String body = new String(error.networkResponse.data,"UTF-8");
@@ -101,15 +103,15 @@ public class LoginActivity extends AppCompatActivity {
                                 Utils.Log(bodyError.getString("error"));
                                 String message = bodyError.getString("error");
 
-                                /*
                                 new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.ERROR_TYPE)
                                         .setTitleText("Oops...")
                                         .setContentText(message)
                                         .show();
-                                 */
+                                return;
                             } catch (UnsupportedEncodingException | JSONException e) {
                                 e.printStackTrace();
                             }
+
                         }else return;
                     }
                 }){
