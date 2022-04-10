@@ -12,10 +12,18 @@ import android.widget.Toast;
 import com.example.milamix.wondercal.R;
 
 public class UserInfoActivity extends AppCompatActivity {
-    String[] items = {"Math","bio","Series1","Seriees","Serieeeees","Serieeeeees","Series6","Series8","Series9"};
+    String[] items = {"Little or no exercise","Exercise 1-2 times/week","Exercise2-3 times/week","Exercise 4-5 times/week","Exercise 6-7 times/week","Professional athlete"};
     AutoCompleteTextView autoCompleteTxt;
     ArrayAdapter<String> adapterItems;
 
+    /* After  calculate  BMR, need to multiply with
+    - Sedentary lifestyle (little or no exercise): 1.2
+    - Slightly active lifestyle (light exercise or sports 1-2 days/week): 1.4
+    - Moderately active lifestyle (moderate exercise or sports 2-3 days/week): 1.6
+    - Very active lifestyle (hard exercise or sports 4-5 days/week): 1.75
+    - Extra active lifestyle (very hard exercise, physical job or sports 6-7 days/week): 2.0
+    - Professional athlete: 2.3
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

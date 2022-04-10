@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_200"
+    android:background="@color/white"
     tools:context=".UserinfoPage.UserInfoActivity">
 
     <EditText
@@ -12,32 +12,30 @@
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="108dp"
-        android:backgroundTint="@color/Greyform"
+        android:layout_marginTop="68dp"
         android:ems="12"
         android:hint="Weight"
         android:inputType="textPersonName"
+
         android:text=""
         android:textColor="@color/black"
-
         android:textColorHint="@color/Greyform"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/info_show_email" />
 
     <EditText
         android:id="@+id/Height"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/Greyform"
         android:ems="12"
         android:hint="Height"
         android:text=""
         android:textColor="@color/black"
         android:textColorHint="@color/Greyform"
-        android:textSize="16sp"
 
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Weight" />
@@ -46,7 +44,6 @@
         android:id="@+id/Age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/Greyform"
         android:ems="12"
         android:hint="Age"
         android:inputType="textPersonName"
@@ -63,7 +60,6 @@
         android:id="@+id/Gender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/Greyform"
         android:ems="12"
         android:hint="Gender"
         android:inputType="textPersonName"
@@ -77,24 +73,43 @@
         app:layout_constraintTop_toBottomOf="@+id/Age" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="226dp"
         android:layout_height="55dp"
         android:layout_margin="5dp"
         android:layout_marginTop="1dp"
-        android:hint="@string/select"
+        android:hint="@string/select_activity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Gender">
 
         <AutoCompleteTextView
-            android:padding="2dp"
-            android:textColor="#D8D8D8"
             android:id="@+id/autoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:textSize="14sp"
             android:inputType="none"></AutoCompleteTextView>
     </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/info_show_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="104dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
