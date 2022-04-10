@@ -34,14 +34,16 @@ public class LoadingUserInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_loading_user_info);
         try {
             initLoad();
-        } catch (JSONException e) { }
+        } catch (JSONException | AuthFailureError e) { }
     }
 
-    private void initLoad() throws JSONException {
+    private void initLoad() throws JSONException, AuthFailureError {
         String email = sharePref.getString("email");
 
         JSONObject obj = new JSONObject();
         obj.put("email", email);
+
+        Utils.Log(obj.toString());
 
         String url =  getResources().getString(R.string.api_endpoint);
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST,url+"/usersInfo/get-users-info",obj,
@@ -83,6 +85,7 @@ public class LoadingUserInfoActivity extends AppCompatActivity {
                 return headers;
             }
         };
+        Utils.LogAPIs(stringRequest);
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(stringRequest);
     }

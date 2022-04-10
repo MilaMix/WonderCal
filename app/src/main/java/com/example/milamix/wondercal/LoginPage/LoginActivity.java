@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -39,23 +40,18 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
     }
 
-    public void btn_Login(View view) throws JSONException {
+    public void btn_Login(View view) throws JSONException, AuthFailureError {
         EditText email_txt = (EditText)findViewById(R.id.email);
         EditText password_txt = (EditText)findViewById(R.id.password);
 
         String email = email_txt.getText().toString();
         String password = password_txt.getText().toString();
 
-        Test t1 = new Test();
-        if(t1.LoginTest(email,password)){
-            swapToMainPage();
-            return;
-        }
-
         JSONObject obj = new JSONObject();
         obj.put("email", email);
         obj.put("password", password);
 
+        Utils.Log("request : "+obj.toString());
         String url =  getResources().getString(R.string.api_endpoint);
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST,url+"/users/login",obj,
                 new Response.Listener<JSONObject>() {
@@ -120,6 +116,7 @@ public class LoginActivity extends AppCompatActivity {
                 return "application/json; charset=utf-8";
             }
         };
+        Utils.LogAPIs(stringRequest);
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(stringRequest);
     }

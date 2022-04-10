@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -32,7 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
     }
 
-    public void btn_CreateAccount(View view) throws JSONException {
+    public void btn_CreateAccount(View view) throws JSONException, AuthFailureError {
         EditText usernameTxt = (EditText)findViewById(R.id.editUsername);
         EditText emailTxt = (EditText)findViewById(R.id.editEmail);
         EditText passwordTxt = (EditText)findViewById(R.id.editPassword);
@@ -98,6 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
                 return "application/json; charset=utf-8";
             }
         };
+        Utils.LogAPIs(stringRequest);
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(stringRequest);
     }

@@ -56,21 +56,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Height" />
 
-    <EditText
-        android:id="@+id/Gender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="12"
-        android:hint="Gender"
-        android:inputType="textPersonName"
-        android:text=""
-        android:textColor="@color/black"
 
-        android:textColorHint="@color/Greyform"
-        android:textSize="16sp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/Gender"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="226dp"
+        android:layout_height="55dp"
+        android:layout_margin="5dp"
+        android:layout_marginTop="1dp"
+        android:hint="@string/select_gender"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Age" />
+        app:layout_constraintTop_toBottomOf="@+id/Age">
+
+    <AutoCompleteTextView
+        android:id="@+id/GenderCompleteTextView"
+        android:padding="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:textSize="14sp"
+        android:inputType="none"></AutoCompleteTextView>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
@@ -79,18 +85,22 @@
         android:layout_height="55dp"
         android:layout_margin="5dp"
         android:layout_marginTop="1dp"
+
         android:hint="@string/select_activity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Gender">
 
         <AutoCompleteTextView
+            android:padding="2dp"
             android:id="@+id/autoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:textSize="14sp"
             android:inputType="none"></AutoCompleteTextView>
     </com.google.android.material.textfield.TextInputLayout>
+
+
 
     <TextView
         android:id="@+id/info_show_email"
@@ -107,7 +117,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Button"
+        android:text="Submit"
+        android:onClick="btn_submit_userInfo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />

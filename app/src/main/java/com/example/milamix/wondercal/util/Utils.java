@@ -5,6 +5,9 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.toolbox.JsonObjectRequest;
+
 public class Utils {
 
     public interface DelayCallback{
@@ -25,6 +28,14 @@ public class Utils {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
 
+    public static void LogAPIs(JsonObjectRequest stringRequest) throws AuthFailureError {
+        Log.d("HTTP_","=====================");
+        Log.d("HTTP_",stringRequest.toString());
+        Log.d("HTTP_",stringRequest.getUrl());
+        Log.d("HTTP_",stringRequest.getHeaders().toString());
+        Log.d("HTTP_",String.valueOf(stringRequest.getMethod()));
+        Log.d("HTTP_","=====================");
+    }
     public static void Log(String str){
         Log.d("App","====> "+str);
     }
