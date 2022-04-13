@@ -15,7 +15,7 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
-    <string name="api_endpoint">http://192.168.1.108:3000</string>
+    <string name="api_endpoint">http://murphy.thddns.net:5150</string>
 
     <string name="title_activity_settings">SettingsActivity</string>
 
