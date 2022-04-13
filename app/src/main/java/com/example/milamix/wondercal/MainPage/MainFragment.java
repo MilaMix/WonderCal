@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.milamix.wondercal.R;
@@ -29,7 +30,8 @@ public class MainFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private TextView tvDate;
+    private ImageView tvDate;
+    private TextView tvDate1;
     private DatePickerDialog.OnDateSetListener setListener;
 
     public MainFragment() {
@@ -66,7 +68,8 @@ public class MainFragment extends Fragment {
         int y = c.get(Calendar.YEAR);
         int m = c.get(Calendar.MONTH);
         int d = c.get(Calendar.DAY_OF_MONTH);
-        tvDate = (TextView) getView().findViewById(R.id.tv_text);
+        tvDate = (ImageView) getView().findViewById(R.id.tv_text1);
+        tvDate1 = (TextView) getView().findViewById(R.id.tv_text);
         tvDate.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -81,7 +84,7 @@ public class MainFragment extends Fragment {
             @Override
             public void onDateSet(DatePicker datePicker, int y1, int m1, int d1) {
                 String date = d1+"/"+m1+"/"+y1;
-;               tvDate.setText(date);
+;               tvDate1.setText(date);
             }
         };
     }

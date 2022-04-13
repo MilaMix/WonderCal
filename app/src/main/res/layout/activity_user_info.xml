@@ -7,6 +7,42 @@
     android:background="@color/white"
     tools:context=".UserinfoPage.UserInfoActivity">
 
+
+    <LinearLayout
+        android:layout_width="408dp"
+        android:layout_height="178dp"
+        android:layout_marginBottom="624dp"
+        android:background="@drawable/toppastal"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="1dp" />
+
+    <RelativeLayout
+        android:id="@+id/rela"
+        android:layout_width="210dp"
+        android:layout_height="355dp"
+        android:layout_marginBottom="268dp"
+        android:background="@drawable/shape_left"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints">
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="304dp"
+        android:layout_height="320dp"
+        android:layout_marginBottom="268dp"
+        android:background="@drawable/shape_login"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <EditText
         android:id="@+id/Weight"
 
@@ -62,20 +98,19 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="226dp"
         android:layout_height="55dp"
-        android:layout_margin="5dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="5dp"
         android:hint="@string/select_gender"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Age">
 
-    <AutoCompleteTextView
-        android:id="@+id/GenderCompleteTextView"
-        android:padding="2dp"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:textSize="14sp"
-        android:inputType="none"></AutoCompleteTextView>
+        <AutoCompleteTextView
+            android:id="@+id/GenderCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:inputType="none"
+            android:padding="2dp"
+            android:textSize="14sp"></AutoCompleteTextView>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -83,8 +118,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="226dp"
         android:layout_height="55dp"
-        android:layout_margin="5dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="5dp"
 
         android:hint="@string/select_activity"
         app:layout_constraintEnd_toEndOf="parent"
@@ -92,12 +126,12 @@
         app:layout_constraintTop_toBottomOf="@+id/Gender">
 
         <AutoCompleteTextView
-            android:padding="2dp"
             android:id="@+id/autoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:textSize="14sp"
-            android:inputType="none"></AutoCompleteTextView>
+            android:inputType="none"
+            android:padding="2dp"
+            android:textSize="14sp"></AutoCompleteTextView>
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -116,11 +150,27 @@
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Submit"
+        android:layout_marginTop="64dp"
         android:onClick="btn_submit_userInfo"
+        android:text="Submit"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="500dp"
+        android:text="Profile"
+        android:textColor="#121111"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.175" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
