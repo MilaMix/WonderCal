@@ -14,17 +14,20 @@
         android:theme="@style/Theme.WonderCal"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".HistoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".UserinfoPage.LoadingUserInfoActivity"
             android:exported="false" />
         <activity
             android:name=".UserinfoPage.UserInfoActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".ForgotPage.ForgotActivity"
             android:exported="true" />
         <activity
             android:name=".LoginPage.LoginActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".LandingPage.LandingActivity"
             android:exported="true">
@@ -39,7 +42,7 @@
             android:exported="true" />
         <activity
             android:name=".MainPage.MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>
