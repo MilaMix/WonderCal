@@ -41,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
     }
 
+    
     public void btn_Login(View view) throws JSONException, AuthFailureError {
         EditText email_txt = (EditText)findViewById(R.id.email);
         EditText password_txt = (EditText)findViewById(R.id.password);
