@@ -111,7 +111,7 @@ public class UserInfoActivity extends AppCompatActivity {
                             String message = response.getString("status");
                             Utils.Log(response.toString());
 
-                            new SweetAlertDialog(UserInfoActivity.this)
+                            new SweetAlertDialog(UserInfoActivity.this,SweetAlertDialog.SUCCESS_TYPE)
                                     .setContentText(message)
                                     .setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
                                         @Override
@@ -141,7 +141,7 @@ public class UserInfoActivity extends AppCompatActivity {
                                 Utils.Log(bodyError.getString("error"));
                                 String message = bodyError.getString("error");
 
-                                new SweetAlertDialog(UserInfoActivity.this)
+                                new SweetAlertDialog(UserInfoActivity.this,SweetAlertDialog.ERROR_TYPE)
                                         .setContentText(message)
                                         .setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
                                             @Override
