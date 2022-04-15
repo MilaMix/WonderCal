@@ -79,18 +79,24 @@ public class RegisterActivity extends AppCompatActivity {
                                 Utils.Log("message => "+bodyError.getString("error"));
                                 String message = bodyError.getString("error");
 
-                                new SweetAlertDialog(RegisterActivity.this, SweetAlertDialog.ERROR_TYPE)
-                                        .setTitleText("Oops...")
+                                new SweetAlertDialog(RegisterActivity.this)
                                         .setContentText(message)
-                                        .show();
-                                return;
+                                        .setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
+                                            @Override
+                                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                                sweetAlertDialog.dismiss();
+                                            }
+                                        }).show();
                             } catch (UnsupportedEncodingException | JSONException e) { }
                         }else{
-                            new SweetAlertDialog(RegisterActivity.this, SweetAlertDialog.ERROR_TYPE)
-                                    .setTitleText("Oops...")
-                                    .setContentText("Server error")
-                                    .show();
-                            return;
+                            new SweetAlertDialog(RegisterActivity.this)
+                                    .setContentText("Server Error")
+                                    .setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
+                                        @Override
+                                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                            sweetAlertDialog.dismiss();
+                                        }
+                                    }).show();
                         }
                     }
                 }){

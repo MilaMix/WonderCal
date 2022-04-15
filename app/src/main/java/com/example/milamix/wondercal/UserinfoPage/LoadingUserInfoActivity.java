@@ -12,6 +12,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.milamix.wondercal.LoginPage.LoginActivity;
 import com.example.milamix.wondercal.MainPage.MainActivity;
 import com.example.milamix.wondercal.R;
 import com.example.milamix.wondercal.sharePref.SharePref;
@@ -23,6 +24,8 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class LoadingUserInfoActivity extends AppCompatActivity {
     Intent itn;
@@ -69,6 +72,17 @@ public class LoadingUserInfoActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         int code = error.networkResponse.statusCode;
+                        if(code == 401){
+                            new SweetAlertDialog(LoadingUserInfoActivity.this,SweetAlertDialog.ERROR_TYPE)
+                                    .setContentText("Session time out")
+                                    .setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
+                                        @Override
+                                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                            sweetAlertDialog.dismiss();
+                                            swapToLoginPage();
+                                        }
+                                    }).show();
+                        }
                         Utils.Log(String.valueOf(code));
                     }
                 }){
@@ -96,6 +110,11 @@ public class LoadingUserInfoActivity extends AppCompatActivity {
     }
     private void swapToUserInfoPage(){
         itn = new Intent(this, UserInfoActivity.class);
+        startActivity(itn);
+        finish();
+    }
+    private void swapToLoginPage(){
+        itn = new Intent(this, LoginActivity.class);
         startActivity(itn);
         finish();
     }

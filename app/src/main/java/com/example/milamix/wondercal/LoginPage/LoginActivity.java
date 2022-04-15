@@ -20,6 +20,7 @@ import com.example.milamix.wondercal.R;
 import com.example.milamix.wondercal.RegisterPage.RegisterActivity;
 import com.example.milamix.wondercal.TestData.Test;
 import com.example.milamix.wondercal.UserinfoPage.LoadingUserInfoActivity;
+import com.example.milamix.wondercal.UserinfoPage.UserInfoActivity;
 import com.example.milamix.wondercal.sharePref.SharePref;
 import com.example.milamix.wondercal.util.Utils;
 
@@ -40,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
     }
 
+    
     public void btn_Login(View view) throws JSONException, AuthFailureError {
         EditText email_txt = (EditText)findViewById(R.id.email);
         EditText password_txt = (EditText)findViewById(R.id.password);
@@ -68,16 +70,15 @@ public class LoginActivity extends AppCompatActivity {
 
                             sharePref.saveLoginPref(token,time,email);
 
-                            new SweetAlertDialog(LoginActivity.this)
-                                    .setTitleText(message)
-                                    .show();
-
-                            Utils.delay(1, new Utils.DelayCallback() {
-                                @Override
-                                public void afterDelay() {
-                                    swapToLoadingUserInfoPage();
-                                }
-                            });
+                            new SweetAlertDialog(LoginActivity.this,SweetAlertDialog.SUCCESS_TYPE)
+                                    .setContentText(message)
+                                    .setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
+                                        @Override
+                                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                            sweetAlertDialog.dismiss();
+                                            swapToLoadingUserInfoPage();
+                                        }
+                                    }).show();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -99,11 +100,14 @@ public class LoginActivity extends AppCompatActivity {
                                 Utils.Log(bodyError.getString("error"));
                                 String message = bodyError.getString("error");
 
-                                new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.ERROR_TYPE)
-                                        .setTitleText("Oops...")
+                                new SweetAlertDialog(LoginActivity.this,SweetAlertDialog.ERROR_TYPE)
                                         .setContentText(message)
-                                        .show();
-                                return;
+                                        .setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
+                                            @Override
+                                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                                sweetAlertDialog.dismiss();
+                                            }
+                                        }).show();
                             } catch (UnsupportedEncodingException | JSONException e) {
                                 e.printStackTrace();
                             }
@@ -141,5 +145,24 @@ public class LoginActivity extends AppCompatActivity {
         itn = new Intent(this, LoadingUserInfoActivity.class);
         startActivity(itn);
         finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        new SweetAlertDialog(LoginActivity.this,SweetAlertDialog.WARNING_TYPE)
+                .setContentText("Are you sure to close App")
+                .setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        sweetAlertDialog.dismiss();
+                        finish();
+                    }
+                })
+                .setCancelButton("Cancel", new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        sweetAlertDialog.dismiss();
+                    }
+                }).show();
     }
 }
