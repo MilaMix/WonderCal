@@ -1,10 +1,12 @@
 package com.example.milamix.wondercal.MainPage;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
@@ -15,7 +17,13 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.milamix.wondercal.BreakfastActivity;
+import com.example.milamix.wondercal.ContactActivity;
+import com.example.milamix.wondercal.DinnerActivity;
+import com.example.milamix.wondercal.LoginPage.LoginActivity;
+import com.example.milamix.wondercal.LunchActivity;
 import com.example.milamix.wondercal.R;
+import com.example.milamix.wondercal.UserinfoPage.UserInfoActivity;
 
 import java.util.Calendar;
 
@@ -32,6 +40,9 @@ public class MainFragment extends Fragment {
     private String mParam2;
     private ImageView tvDate;
     private TextView tvDate1;
+    private ImageView breakfast;
+    private ImageView lunch;
+    private ImageView dinner;
     private DatePickerDialog.OnDateSetListener setListener;
 
     public MainFragment() {
@@ -70,11 +81,38 @@ public class MainFragment extends Fragment {
         int d = c.get(Calendar.DAY_OF_MONTH);
         tvDate = (ImageView) getView().findViewById(R.id.tv_text1);
         tvDate1 = (TextView) getView().findViewById(R.id.tv_text);
-        tvDate.setOnClickListener(new View.OnClickListener(){
+        breakfast = getView().findViewById(R.id.breakfast);
+        lunch = getView().findViewById(R.id.lunch);
+        dinner = getView().findViewById(R.id.dinner);
 
+        breakfast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), android.R.style.Theme_Holo_Light_Dialog,setListener,y,m,d);
+                Intent itn = new Intent(getActivity(), BreakfastActivity.class);
+                startActivity(itn);
+            }
+        });
+
+        lunch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent itn = new Intent(getActivity(), LunchActivity.class);
+                startActivity(itn);
+
+            }
+        });
+        dinner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent itn = new Intent(getActivity(), DinnerActivity.class);
+                startActivity(itn);
+            }
+        });
+
+        tvDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), android.R.style.Theme_Holo_Light_Dialog, setListener, y, m, d);
                 datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 datePickerDialog.show();
             }
@@ -83,12 +121,14 @@ public class MainFragment extends Fragment {
         setListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int y1, int m1, int d1) {
-                String date = d1+"/"+m1+"/"+y1;
-;               tvDate1.setText(date);
+                String date = d1 + "/" + m1 + "/" + y1;
+                ;
+                tvDate1.setText(date);
             }
         };
     }
-}
+
+    }
 
 
 
