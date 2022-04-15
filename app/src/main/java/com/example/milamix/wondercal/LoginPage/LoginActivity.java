@@ -18,7 +18,6 @@ import com.example.milamix.wondercal.ForgotPage.ForgotActivity;
 import com.example.milamix.wondercal.MainPage.MainActivity;
 import com.example.milamix.wondercal.R;
 import com.example.milamix.wondercal.RegisterPage.RegisterActivity;
-import com.example.milamix.wondercal.TestData.Test;
 import com.example.milamix.wondercal.UserinfoPage.LoadingUserInfoActivity;
 import com.example.milamix.wondercal.UserinfoPage.UserInfoActivity;
 import com.example.milamix.wondercal.sharePref.SharePref;

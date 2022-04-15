@@ -25,11 +25,11 @@ public class RestaurantAdapter extends BaseAdapter {
         TextView RestaurantDesc;
         ImageView RestaurantImage;
     }
+
     @Override
     public int getCount() {
         return RestaurantDatas.size();
     }
-
 
     @Override
     public Object getItem(int i) {
@@ -54,11 +54,11 @@ public class RestaurantAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder)view.getTag();
         }
-        String Name = RestaurantDatas.get(position).getRestaurantName();
-        holder.RestaurantName.setText(Name);
-        holder.RestaurantDesc.setText(RestaurantDatas.get(position).getRestaurantDesc());
-        holder.RestaurantImage.setImageResource(RestaurantDatas.get(position).getRestaurantImage());
 
+        String Name = RestaurantDatas.get(position).getRestaurantName_en();
+        holder.RestaurantName.setText(Name);
+        holder.RestaurantDesc.setText(RestaurantDatas.get(position).getRestaurantName_th());
+        holder.RestaurantImage.setImageResource(RestaurantDatas.get(position).getRestaurantImage());
         return view;
     }
 }

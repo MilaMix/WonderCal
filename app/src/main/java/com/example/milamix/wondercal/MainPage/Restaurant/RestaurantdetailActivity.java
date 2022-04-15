@@ -15,6 +15,7 @@ import android.widget.ListView;
 
 import com.example.milamix.wondercal.R;
 import com.example.milamix.wondercal.databinding.ActivityRestaurantdetailBinding;
+import com.example.milamix.wondercal.util.Utils;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -29,19 +30,39 @@ import java.util.List;
 public class RestaurantdetailActivity extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     private ActivityRestaurantdetailBinding binding;
-
+    RestaurantData data;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+
+        if(bundle != null){
+            data = new RestaurantData(
+                    bundle.getInt("id"),
+                    bundle.getString("name_en"),
+                    bundle.getString("name_th"),
+                    bundle.getString("detail"),
+                    bundle.getString("latitude"),
+                    bundle.getString("longtitude"),
+                    bundle.getInt("image")
+            );
+        }
+
         binding = ActivityRestaurantdetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        Utils.Log(data.getRestaurantName_en());
+        Utils.Log(data.getRestaurantName_th());
+        Utils.Log(data.getDetail());
+        Utils.Log(data.getLatitude());
+        Utils.Log(data.getLongtitude());
     }
 
 
