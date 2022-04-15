@@ -32,4 +32,8 @@
     <string name="attachment_title">Download incoming attachments</string>
     <string name="attachment_summary_on">Automatically download attachments for incoming emails</string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="title_activity_restaurant_map">RestaurantMapActivity</string>
+
+    <!-- Google Map -->
+    <string name="google_maps_key" translatable="false" templateMergeStrategy="preserve">AIzaSyC7GhH2rxk4_xFa3LjcYUscjjAaibfPU6o</string>
 </resources>

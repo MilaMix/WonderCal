@@ -22,6 +22,7 @@ public class SharePref {
     }
     public void saveLogout(){
         saveString("token","");
+        saveString("email","");
         saveBoolean("isLogin",false);
         saveString("lastLogin","");
     }

@@ -11,7 +11,7 @@
         android:id="@+id/editEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/Greyform"
+        android:backgroundTint="@color/greyform"
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
@@ -29,7 +29,7 @@
         android:id="@+id/editPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/Greyform"
+        android:backgroundTint="@color/greyform"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
@@ -47,8 +47,9 @@
         android:id="@+id/rlHeader"
         android:layout_width="413dp"
         android:layout_height="198dp"
-        tools:layout_editor_absoluteX="-1dp"
-        tools:layout_editor_absoluteY="0dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:layout_width="291dp"
@@ -107,7 +108,7 @@
         android:id="@+id/editUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/Greyform"
+        android:backgroundTint="@color/greyform"
         android:ems="10"
         android:hint="Username"
         android:inputType="textPersonName"
@@ -125,7 +126,7 @@
         android:id="@+id/editComfirmPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/Greyform"
+        android:backgroundTint="@color/greyform"
         android:ems="10"
         android:hint="Confirm Password"
         android:inputType="textPassword"
