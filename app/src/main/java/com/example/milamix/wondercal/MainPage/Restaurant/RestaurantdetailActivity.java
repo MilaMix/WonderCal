@@ -1,36 +1,25 @@
 package com.example.milamix.wondercal.MainPage.Restaurant;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.ListView;
 
+import com.example.milamix.wondercal.Models.RestaurantModels;
 import com.example.milamix.wondercal.R;
 import com.example.milamix.wondercal.databinding.ActivityRestaurantdetailBinding;
 import com.example.milamix.wondercal.util.Utils;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class RestaurantdetailActivity extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     private ActivityRestaurantdetailBinding binding;
-    RestaurantData data;
+    RestaurantModels data;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +29,7 @@ public class RestaurantdetailActivity extends AppCompatActivity implements OnMap
         Bundle bundle = intent.getExtras();
 
         if(bundle != null){
-            data = new RestaurantData(
+            data = new RestaurantModels(
                     bundle.getInt("id"),
                     bundle.getString("name_en"),
                     bundle.getString("name_th"),

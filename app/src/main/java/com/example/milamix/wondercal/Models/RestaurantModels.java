@@ -1,6 +1,6 @@
-package com.example.milamix.wondercal.MainPage.Restaurant;
+package com.example.milamix.wondercal.Models;
 
-public class RestaurantData {
+public class RestaurantModels {
 
     private int Restaurant_id;
     private String RestaurantName_en;
@@ -13,7 +13,7 @@ public class RestaurantData {
 
     private int RestaurantImage;
 
-    public RestaurantData(
+    public RestaurantModels(
             int Restaurant_id,
             String RestaurantName_en,
             String RestaurantName_th,

@@ -6,30 +6,27 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.milamix.wondercal.LoginPage.LoginActivity;
 import com.example.milamix.wondercal.MainPage.MainActivity;
 import com.example.milamix.wondercal.R;
-import com.example.milamix.wondercal.sharePref.SharePref;
+import com.example.milamix.wondercal.Service.IResult;
+import com.example.milamix.wondercal.Models.ResponseErrorModels;
+import com.example.milamix.wondercal.Models.ResponseModels;
+import com.example.milamix.wondercal.Service.VolleyService;
+import com.example.milamix.wondercal.Service.SharePref;
 import com.example.milamix.wondercal.util.Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.Map;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class LoadingUserInfoActivity extends AppCompatActivity {
     Intent itn;
     SharePref sharePref = new SharePref(this);
+    IResult mResultCallback = null;
+    VolleyService mVolleyService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,79 +39,61 @@ public class LoadingUserInfoActivity extends AppCompatActivity {
 
     private void initLoad() throws JSONException, AuthFailureError {
         String email = sharePref.getString("email");
-
         JSONObject obj = new JSONObject();
         obj.put("email", email);
-
         Utils.Log(obj.toString());
+        initVolleyCallback();
+        mVolleyService = new VolleyService(mResultCallback, this);
+        mVolleyService.postDataVolleyWithToken("/usersInfo/get-users-info", obj);
+    }
 
-        String url =  getResources().getString(R.string.api_endpoint);
-        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST,url+"/usersInfo/get-users-info",obj,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            String status = response.getString("status");
-                            Utils.Log(response.toString());
-                            if(status.equalsIgnoreCase("success")){
-                                JSONObject data = response.getJSONObject("data");
-                                sharePref.saveObj("userInfo",data);
-                                swapToMainPage();
-                            }else{
-                                swapToUserInfoPage();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        int code = error.networkResponse.statusCode;
-                        if(code == 401){
-                            new SweetAlertDialog(LoadingUserInfoActivity.this,SweetAlertDialog.ERROR_TYPE)
-                                    .setContentText("Session time out")
-                                    .setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
-                                        @Override
-                                        public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                            sweetAlertDialog.dismiss();
-                                            swapToLoginPage();
-                                        }
-                                    }).show();
-                        }
-                        Utils.Log(String.valueOf(code));
-                    }
-                }){
+    void initVolleyCallback(){
+        boolean isEditProfile = sharePref.getBoolean("isEditProfile");
+        mResultCallback = new IResult() {
             @Override
-            public String getBodyContentType() {
-                return "application/json; charset=utf-8";
+            public void notifySuccess(JSONObject response) {
+                ResponseModels res = new ResponseModels(response);
+                try {
+                    if(res.getStatus().equalsIgnoreCase("success")){
+                        sharePref.saveObj("userInfo",res.getData());
+                        sharePref.saveBoolean("isEditProfile",false);
+                        if(isEditProfile) finish();
+                        else swapPage("Main");
+                    }else swapPage("UsersInfo");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
-
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("Content-Type", "application/json");
-                headers.put("authorization",sharePref.getString("token"));
-                return headers;
+            public void notifyError(VolleyError error) {
+                ResponseErrorModels err = new ResponseErrorModels(error);
+                if(err.getStatusCode() == 401){
+                    new SweetAlertDialog(LoadingUserInfoActivity.this,SweetAlertDialog.ERROR_TYPE)
+                            .setContentText("Session time out")
+                            .setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                    sweetAlertDialog.dismiss();
+                                    swapPage("Login");
+                                }
+                            }).show();
+                }
             }
         };
-        Utils.LogAPIs(stringRequest);
-        RequestQueue queue = Volley.newRequestQueue(this);
-        queue.add(stringRequest);
     }
-    private void swapToMainPage(){
-        itn = new Intent(this, MainActivity.class);
-        startActivity(itn);
-        finish();
-    }
-    private void swapToUserInfoPage(){
-        itn = new Intent(this, UserInfoActivity.class);
-        startActivity(itn);
-        finish();
-    }
-    private void swapToLoginPage(){
-        itn = new Intent(this, LoginActivity.class);
+
+    void swapPage(String page){
+        switch (page){
+            case "Login":
+                itn = new Intent(this,LoginActivity.class);
+                break;
+            case "UsersInfo":
+                itn = new Intent(this,UserInfoActivity.class);
+                break;
+            case "Main":
+                itn = new Intent(this,MainActivity.class);
+                break;
+        }
         startActivity(itn);
         finish();
     }

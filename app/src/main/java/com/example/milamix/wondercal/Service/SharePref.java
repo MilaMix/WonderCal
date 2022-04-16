@@ -1,4 +1,4 @@
-package com.example.milamix.wondercal.sharePref;
+package com.example.milamix.wondercal.Service;
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -65,7 +65,7 @@ public class SharePref {
         return sharedPref.getString(key, "");
     }
 
-    public void saveBoolean(String key, Boolean value) {
+    public void saveBoolean(String key, boolean value) {
         SharedPreferences sharedPref = context.getSharedPreferences(PREF_NAME,Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putBoolean(key, value);
