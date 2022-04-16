@@ -1,4 +1,4 @@
-package com.example.milamix.wondercal.MainPage.Setting;
+package com.example.milamix.wondercal.Page.MainPage.Setting;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,12 +15,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.milamix.wondercal.LoginPage.LoginActivity;
-import com.example.milamix.wondercal.MainPage.MainFragment;
+import com.example.milamix.wondercal.Page.LoginPage.LoginActivity;
+import com.example.milamix.wondercal.Page.MainPage.MainFragment;
 import com.example.milamix.wondercal.R;
-import com.example.milamix.wondercal.UserinfoPage.UserInfoActivity;
+import com.example.milamix.wondercal.Page.UserinfoPage.UserInfoActivity;
 import com.example.milamix.wondercal.Service.SharePref;
-import com.example.milamix.wondercal.util.Utils;
+import com.example.milamix.wondercal.Utils.Utils;
 
 public class SettingsFragment<contact> extends Fragment {
     Intent itn;

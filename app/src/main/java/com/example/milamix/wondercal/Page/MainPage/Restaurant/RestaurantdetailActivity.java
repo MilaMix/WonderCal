@@ -1,4 +1,4 @@
-package com.example.milamix.wondercal.MainPage.Restaurant;
+package com.example.milamix.wondercal.Page.MainPage.Restaurant;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,7 +8,7 @@ import android.os.Bundle;
 import com.example.milamix.wondercal.Models.RestaurantModels;
 import com.example.milamix.wondercal.R;
 import com.example.milamix.wondercal.databinding.ActivityRestaurantdetailBinding;
-import com.example.milamix.wondercal.util.Utils;
+import com.example.milamix.wondercal.Utils.Utils;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;

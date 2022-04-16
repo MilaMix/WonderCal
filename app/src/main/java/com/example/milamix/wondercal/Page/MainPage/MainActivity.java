@@ -1,4 +1,4 @@
-package com.example.milamix.wondercal.MainPage;
+package com.example.milamix.wondercal.Page.MainPage;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -7,8 +7,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
-import com.example.milamix.wondercal.MainPage.Restaurant.RestaurantFragment;
-import com.example.milamix.wondercal.MainPage.Setting.SettingsFragment;
+import com.example.milamix.wondercal.Page.MainPage.Restaurant.RestaurantFragment;
+import com.example.milamix.wondercal.Page.MainPage.Setting.SettingsFragment;
 import com.example.milamix.wondercal.R;
 import com.example.milamix.wondercal.databinding.ActivityMainBinding;
 

@@ -1,4 +1,4 @@
-package com.example.milamix.wondercal.UserinfoPage;
+package com.example.milamix.wondercal.Page.UserinfoPage;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,15 +7,15 @@ import android.os.Bundle;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.VolleyError;
-import com.example.milamix.wondercal.LoginPage.LoginActivity;
-import com.example.milamix.wondercal.MainPage.MainActivity;
+import com.example.milamix.wondercal.Page.LoginPage.LoginActivity;
+import com.example.milamix.wondercal.Page.MainPage.MainActivity;
 import com.example.milamix.wondercal.R;
 import com.example.milamix.wondercal.Service.IResult;
 import com.example.milamix.wondercal.Models.ResponseErrorModels;
 import com.example.milamix.wondercal.Models.ResponseModels;
 import com.example.milamix.wondercal.Service.VolleyService;
 import com.example.milamix.wondercal.Service.SharePref;
-import com.example.milamix.wondercal.util.Utils;
+import com.example.milamix.wondercal.Utils.Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;

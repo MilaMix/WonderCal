@@ -1,4 +1,4 @@
-package com.example.milamix.wondercal.MainPage;
+package com.example.milamix.wondercal.Page.MainPage;
 
 import android.os.Bundle;
 

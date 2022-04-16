@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainPage.Restaurant.RestaurantFragment">
+    tools:context=".Page.MainPage.Restaurant.RestaurantFragment">
 
     <!-- TODO: Update blank fragment layout -->
 

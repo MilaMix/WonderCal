@@ -1,4 +1,4 @@
-package com.example.milamix.wondercal.MainPage.Restaurant;
+package com.example.milamix.wondercal.Page.MainPage.Restaurant;
 
 import android.content.Context;
 import android.view.LayoutInflater;

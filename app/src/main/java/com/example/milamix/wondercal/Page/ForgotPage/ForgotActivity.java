@@ -1,4 +1,4 @@
-package com.example.milamix.wondercal.ForgotPage;
+package com.example.milamix.wondercal.Page.ForgotPage;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,9 +13,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.milamix.wondercal.LoginPage.LoginActivity;
+import com.example.milamix.wondercal.Page.LoginPage.LoginActivity;
 import com.example.milamix.wondercal.R;
-import com.example.milamix.wondercal.util.Utils;
+import com.example.milamix.wondercal.Utils.Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;

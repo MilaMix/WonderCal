@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F0F3F4"
-    tools:context=".MainPage.SearchFragment">
+    tools:context=".Page.MainPage.SearchFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout5"

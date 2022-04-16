@@ -31,71 +31,43 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WonderCal"
-<<<<<<< HEAD
-        android:usesCleartextTraffic="true">
-        <activity
-            android:name=".DinnerActivity"
-            android:exported="true" />
-        <activity
-            android:name=".LunchActivity"
-            android:exported="true" />
-        <activity
-            android:name=".BreakfastActivity"
-            android:exported="true" />
-        <!--
-             The API key for Google Maps-based APIs is defined as a string resource.
-             (See the file "res/values/google_maps_api.xml").
-             Note that the API key is linked to the encryption key used to sign the APK.
-             You need a different API key for each encryption key, including the release key that is used to
-             sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/.
-        -->
-=======
         android:usesCleartextTraffic="true" >
->>>>>>> origin/feature/setting
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
+    <activity
+        android:name=".Page.DinnerActivity"
+        android:exported="true" />
+    <activity
+        android:name=".Page.LunchActivity"
+        android:exported="true" />
+    <activity
+        android:name=".Page.BreakfastActivity"
+        android:exported="true" />
         <activity
-            android:name=".HistoryActivity"
+            android:name=".Page.HistoryActivity"
             android:exported="false" />
         <activity
-            android:name=".UserinfoPage.LoadingUserInfoActivity"
+            android:name=".Page.UserinfoPage.LoadingUserInfoActivity"
             android:exported="false" />
         <activity
-            android:name=".UserinfoPage.UserInfoActivity"
+            android:name=".Page.UserinfoPage.UserInfoActivity"
             android:exported="true" />
 
         <activity
-            android:name=".ForgotPage.ForgotActivity"
+            android:name=".Page.ForgotPage.ForgotActivity"
             android:exported="true" />
         <activity
-            android:name=".LoginPage.LoginActivity"
-<<<<<<< HEAD
+            android:name=".Page.LoginPage.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".ContactActivity"
-            android:exported="true" />
-        <activity
-            android:name=".LandingPage.LandingActivity"
-            android:exported="true" />
-=======
-            android:exported="true" >
-        </activity>
->>>>>>> origin/feature/setting
-        <activity
-            android:name=".MainPage.Setting.ContactActivity"
+            android:name=".Page.MainPage.Setting.ContactActivity"
             android:exported="true">
-
         </activity>
         <activity
-<<<<<<< HEAD
-            android:name=".MainPage.MainActivity"
-            android:exported="true">
-=======
-            android:name=".LandingPage.LandingActivity"
+            android:name=".Page.LandingPage.LandingActivity"
             android:exported="true" >
->>>>>>> origin/feature/setting
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -103,14 +75,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RegisterPage.RegisterActivity"
+            android:name=".Page.RegisterPage.RegisterActivity"
             android:exported="true" />
         <activity
-            android:name=".MainPage.MainActivity"
+            android:name=".Page.MainPage.MainActivity"
             android:exported="true" >
         </activity>
         <activity
-            android:name=".MainPage.Restaurant.RestaurantdetailActivity"
+            android:name=".Page.MainPage.Restaurant.RestaurantdetailActivity"
             android:exported="true" />
     </application>
 

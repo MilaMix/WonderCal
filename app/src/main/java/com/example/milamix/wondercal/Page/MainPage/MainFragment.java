@@ -1,4 +1,4 @@
-package com.example.milamix.wondercal.MainPage;
+package com.example.milamix.wondercal.Page.MainPage;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
@@ -17,13 +16,10 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.milamix.wondercal.BreakfastActivity;
-import com.example.milamix.wondercal.ContactActivity;
-import com.example.milamix.wondercal.DinnerActivity;
-import com.example.milamix.wondercal.LoginPage.LoginActivity;
-import com.example.milamix.wondercal.LunchActivity;
+import com.example.milamix.wondercal.Page.BreakfastActivity;
+import com.example.milamix.wondercal.Page.DinnerActivity;
+import com.example.milamix.wondercal.Page.LunchActivity;
 import com.example.milamix.wondercal.R;
-import com.example.milamix.wondercal.UserinfoPage.UserInfoActivity;
 
 import java.util.Calendar;
 
@@ -40,9 +36,11 @@ public class MainFragment extends Fragment {
     private String mParam2;
     private ImageView tvDate;
     private TextView tvDate1;
+
     private ImageView breakfast;
     private ImageView lunch;
     private ImageView dinner;
+
     private DatePickerDialog.OnDateSetListener setListener;
 
     public MainFragment() {
@@ -81,6 +79,7 @@ public class MainFragment extends Fragment {
         int d = c.get(Calendar.DAY_OF_MONTH);
         tvDate = (ImageView) getView().findViewById(R.id.tv_text1);
         tvDate1 = (TextView) getView().findViewById(R.id.tv_text);
+
         breakfast = getView().findViewById(R.id.breakfast);
         lunch = getView().findViewById(R.id.lunch);
         dinner = getView().findViewById(R.id.dinner);

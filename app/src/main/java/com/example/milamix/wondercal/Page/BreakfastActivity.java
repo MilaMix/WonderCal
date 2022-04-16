@@ -1,8 +1,10 @@
-package com.example.milamix.wondercal;
+package com.example.milamix.wondercal.Page;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.milamix.wondercal.R;
 
 public class BreakfastActivity extends AppCompatActivity {
 

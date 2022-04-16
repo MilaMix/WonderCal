@@ -1,4 +1,4 @@
-package com.example.milamix.wondercal.MainPage.Restaurant;
+package com.example.milamix.wondercal.Page.MainPage.Restaurant;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -15,14 +15,14 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.android.volley.VolleyError;
-import com.example.milamix.wondercal.LoginPage.LoginActivity;
+import com.example.milamix.wondercal.Page.LoginPage.LoginActivity;
 import com.example.milamix.wondercal.Models.RestaurantModels;
 import com.example.milamix.wondercal.R;
 import com.example.milamix.wondercal.Service.IResult;
 import com.example.milamix.wondercal.Models.ResponseErrorModels;
 import com.example.milamix.wondercal.Models.ResponseModels;
 import com.example.milamix.wondercal.Service.VolleyService;
-import com.example.milamix.wondercal.util.Utils;
+import com.example.milamix.wondercal.Utils.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
