@@ -8,16 +8,17 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.milamix.wondercal.Models.RestaurantModels;
 import com.example.milamix.wondercal.R;
 
 import java.util.List;
 
 public class RestaurantAdapter extends BaseAdapter {
-    private List<RestaurantData> RestaurantDatas;
+    private List<RestaurantModels> restaurantModels;
     private LayoutInflater RestaurantLayoutInflater;
 
-    public RestaurantAdapter(Context context, List<RestaurantData> aList) {
-        RestaurantDatas = aList;
+    public RestaurantAdapter(Context context, List<RestaurantModels> aList) {
+        restaurantModels = aList;
         RestaurantLayoutInflater = LayoutInflater.from(context);
     }
     static class ViewHolder {
@@ -28,7 +29,7 @@ public class RestaurantAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return RestaurantDatas.size();
+        return restaurantModels.size();
     }
 
     @Override
@@ -55,10 +56,10 @@ public class RestaurantAdapter extends BaseAdapter {
             holder = (ViewHolder)view.getTag();
         }
 
-        String Name = RestaurantDatas.get(position).getRestaurantName_en();
+        String Name = restaurantModels.get(position).getRestaurantName_en();
         holder.RestaurantName.setText(Name);
-        holder.RestaurantDesc.setText(RestaurantDatas.get(position).getRestaurantName_th());
-        holder.RestaurantImage.setImageResource(RestaurantDatas.get(position).getRestaurantImage());
+        holder.RestaurantDesc.setText(restaurantModels.get(position).getRestaurantName_th());
+        holder.RestaurantImage.setImageResource(restaurantModels.get(position).getRestaurantImage());
         return view;
     }
 }

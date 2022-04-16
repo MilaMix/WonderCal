@@ -12,32 +12,30 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.milamix.wondercal.LoginPage.LoginActivity;
-import com.example.milamix.wondercal.MainPage.MainActivity;
+import com.example.milamix.wondercal.Models.UserInfoModels;
 import com.example.milamix.wondercal.R;
-import com.example.milamix.wondercal.RegisterPage.RegisterActivity;
-import com.example.milamix.wondercal.sharePref.SharePref;
+import com.example.milamix.wondercal.Service.IResult;
+import com.example.milamix.wondercal.Models.ResponseErrorModels;
+import com.example.milamix.wondercal.Models.ResponseModels;
+import com.example.milamix.wondercal.Service.VolleyService;
+import com.example.milamix.wondercal.Service.SharePref;
 import com.example.milamix.wondercal.util.Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.Map;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class UserInfoActivity extends AppCompatActivity {
     SharePref sharePref = new SharePref(this);
     Intent itn;
+    UserInfoModels users = new UserInfoModels();
+    IResult mResultCallback = null;
+    VolleyService mVolleyService;
 
     String[] items = {"Little or no exercise","Exercise 1-2 times/week","Exercise2-3 times/week","Exercise 4-5 times/week","Exercise 6-7 times/week","Professional athlete"};
     String[] genders = {"Male","Female"};
@@ -48,19 +46,51 @@ public class UserInfoActivity extends AppCompatActivity {
 
     private TextView emailView;
 
-    AutoCompleteTextView autoCompleteTxt;
-    ArrayAdapter<String> adapterItems;
-
-    AutoCompleteTextView autoCompleteTxt_gender;
-    ArrayAdapter<String> adapterItems_gender;
+    AutoCompleteTextView autoCompleteTxt,autoCompleteTxt_gender;
+    ArrayAdapter<String> adapterItems,adapterItems_gender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
-        emailView = (TextView) findViewById(R.id.info_show_email);
-        emailView.setText(sharePref.getString("email"));
+        boolean isEditProfile = sharePref.getBoolean("isEditProfile");
+        Utils.Log(String.valueOf(isEditProfile));
 
+        if(isEditProfile){
+            try {
+                onEditProfile();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }else{
+            onEditFirstTime();
+        }
+    }
+
+    public void onEditProfile() throws JSONException {
+        JSONObject obj = sharePref.getObj("userInfo");
+        Utils.Log(obj.toString());
+        EditText weight = findViewById(R.id.Weight);
+        EditText height = findViewById(R.id.Height);
+        EditText age = findViewById(R.id.Age);
+
+        users.setAge(Integer.parseInt(obj.getString("age")));
+        users.setHeight(Integer.parseInt(obj.getString("height")));
+        users.setWeight(Integer.parseInt(obj.getString("weight")));
+        weight.setText(String.valueOf(users.getWeight()));
+        height.setText(String.valueOf(users.getHeight()));
+        age.setText(String.valueOf(users.getAge()));
+        select();
+    }
+
+    public void onEditFirstTime(){
+        emailView = (TextView) findViewById(R.id.info_show_email);
+        users.setEmail(sharePref.getString("email"));
+        emailView.setText(users.getEmail());
+        select();
+    }
+
+    void select(){
         autoCompleteTxt = findViewById(R.id.autoCompleteTextView);
         adapterItems = new ArrayAdapter<String>(this,R.layout.dropdown_ac_item,items);
         autoCompleteTxt.setAdapter(adapterItems);
@@ -84,98 +114,96 @@ public class UserInfoActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Item: "+item,Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
-    public void btn_submit_userInfo(View view) throws JSONException, AuthFailureError {
+    public void btn_submit_userInfo(View view) throws JSONException {
+        boolean isEditProfile = sharePref.getBoolean("isEditProfile");
         EditText weight = findViewById(R.id.Weight);
         EditText height = findViewById(R.id.Height);
         EditText age = findViewById(R.id.Age);
 
-        JSONObject obj = new JSONObject();
-        obj.put("email", sharePref.getString("email"));
-        obj.put("weight", weight.getText().toString());
-        obj.put("height", height.getText().toString());
-        obj.put("age", age.getText().toString());
-        obj.put("gender", genders[index_gender]);
-        obj.put("activity", itemsValue[index]);
+        users.setActivity(itemsValue[index]);
+        users.setWeight(Integer.parseInt(weight.getText().toString()));
+        users.setHeight(Integer.parseInt(height.getText().toString()));
+        users.setEmail(sharePref.getString("email"));
+        users.setGender(genders[index_gender]);
+        users.setAge(Integer.parseInt(age.getText().toString()));
 
-        Utils.Log("Body => "+obj.toString());
+        Utils.Log(users.getJSONObj().toString());
+        initVolleyCallback();
+        mVolleyService = new VolleyService(mResultCallback, this);
+        mVolleyService.postDataVolleyWithToken(
+                isEditProfile? "/usersInfo/update-users-info":"/usersInfo/create-users-info",
+                users.getJSONObj());
+    }
 
-        String url =  getResources().getString(R.string.api_endpoint);
-        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST,url+"/usersInfo/create-users-info",obj,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            String message = response.getString("status");
-                            Utils.Log(response.toString());
-
-                            new SweetAlertDialog(UserInfoActivity.this,SweetAlertDialog.SUCCESS_TYPE)
-                                    .setContentText(message)
-                                    .setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
-                                        @Override
-                                        public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                            sweetAlertDialog.dismiss();
-                                            swapToLoadingUserInfoPage();
-                                        }
-                                    }).show();
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        int code = error.networkResponse.statusCode;
-
-                        Utils.Log("Response : "+error.toString());
-                        Utils.Log("responseCode : "+String.valueOf(code));
-                        if(error.networkResponse.data!=null) {
-                            try {
-                                String body = new String(error.networkResponse.data,"UTF-8");
-                                JSONObject bodyError = new JSONObject(body.toString());
-
-                                Utils.Log(bodyError.getString("error"));
-                                String message = bodyError.getString("error");
-
-                                new SweetAlertDialog(UserInfoActivity.this,SweetAlertDialog.ERROR_TYPE)
-                                        .setContentText(message)
-                                        .setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
-                                            @Override
-                                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                                sweetAlertDialog.dismiss();
-                                            }
-                                        }).show();
-                            } catch (UnsupportedEncodingException | JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-                }){
+    void initVolleyCallback(){
+        boolean isEditProfile = sharePref.getBoolean("isEditProfile");
+        mResultCallback = new IResult() {
             @Override
-            public String getBodyContentType() {
-                return "application/json; charset=utf-8";
+            public void notifySuccess(JSONObject response) {
+                ResponseModels res = new ResponseModels(response);
+                try {
+                    new SweetAlertDialog(UserInfoActivity.this,SweetAlertDialog.SUCCESS_TYPE)
+                            .setContentText(res.getMessage())
+                            .setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                    sweetAlertDialog.dismiss();
+                                    if(isEditProfile) swapToMainPage();
+                                    else swapToLoadingUserInfoPage();
+                                }
+                            }).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
-
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("Content-Type", "application/json");
-                headers.put("authorization",sharePref.getString("token"));
-                return headers;
+            public void notifyError(VolleyError error) {
+                ResponseErrorModels err = new ResponseErrorModels(error);
+                if(err.getStatusCode() == 401){
+                    new SweetAlertDialog(UserInfoActivity.this,SweetAlertDialog.ERROR_TYPE)
+                            .setContentText("Session time out")
+                            .setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                    sweetAlertDialog.dismiss();
+                                    swapToLoginPage();
+                                }
+                            }).show();
+                }else{
+
+                    try {
+                        new SweetAlertDialog(UserInfoActivity.this,SweetAlertDialog.ERROR_TYPE)
+                                .setContentText(err.getError())
+                                .setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
+                                    @Override
+                                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                        sweetAlertDialog.dismiss();
+                                    }
+                                }).show();
+                    } catch (UnsupportedEncodingException | JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         };
-
-        Utils.LogAPIs(stringRequest);
-        RequestQueue queue = Volley.newRequestQueue(this);
-        queue.add(stringRequest);
     }
 
     private void swapToLoadingUserInfoPage(){
         itn = new Intent(this, LoadingUserInfoActivity.class);
+        startActivity(itn);
+        finish();
+    }
+
+    private void swapToMainPage(){
+        itn = new Intent(this, LoadingUserInfoActivity.class);
+        startActivity(itn);
+        finish();
+    }
+
+    private void swapToLoginPage(){
+        itn = new Intent(this, LoginActivity.class);
         startActivity(itn);
         finish();
     }

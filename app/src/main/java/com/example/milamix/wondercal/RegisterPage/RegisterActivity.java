@@ -70,7 +70,6 @@ public class RegisterActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Utils.Log("Response => "+error.toString());
                         if(error.networkResponse.data!=null) {
                             try {
                                 String body = new String(error.networkResponse.data,"UTF-8");
