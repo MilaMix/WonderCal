@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.milamix.wondercal.Models.RestaurantModels;
 import com.example.milamix.wondercal.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class RestaurantAdapter extends BaseAdapter {
         restaurantModels = aList;
         RestaurantLayoutInflater = LayoutInflater.from(context);
     }
+
     static class ViewHolder {
         TextView RestaurantName;
         TextView RestaurantDesc;
@@ -59,7 +61,12 @@ public class RestaurantAdapter extends BaseAdapter {
         String Name = restaurantModels.get(position).getRestaurantName_en();
         holder.RestaurantName.setText(Name);
         holder.RestaurantDesc.setText(restaurantModels.get(position).getRestaurantName_th());
-        holder.RestaurantImage.setImageResource(restaurantModels.get(position).getRestaurantImage());
+
+        Picasso.get()
+                .load(restaurantModels.get(position).getRestaurantImage())
+                .placeholder(R.mipmap.ic_launcher).fit()
+                .error(R.mipmap.ic_launcher)
+                .into(holder.RestaurantImage);
         return view;
     }
 }

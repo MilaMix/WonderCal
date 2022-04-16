@@ -16,10 +16,14 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.milamix.wondercal.Page.BreakfastActivity;
-import com.example.milamix.wondercal.Page.DinnerActivity;
-import com.example.milamix.wondercal.Page.LunchActivity;
+import com.example.milamix.wondercal.Models.UserInfoModels;
+import com.example.milamix.wondercal.Page.MealActivity;
 import com.example.milamix.wondercal.R;
+import com.example.milamix.wondercal.Service.SharePref;
+import com.example.milamix.wondercal.Utils.Utils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Calendar;
 
@@ -37,6 +41,8 @@ public class MainFragment extends Fragment {
     private ImageView tvDate;
     private TextView tvDate1;
 
+    private UserInfoModels users;
+    private TextView UsersEmail;
     private ImageView breakfast;
     private ImageView lunch;
     private ImageView dinner;
@@ -72,11 +78,30 @@ public class MainFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+        SharePref sharePref = new SharePref(getContext());
         super.onViewCreated(view, savedInstanceState);
+        try {
+            JSONObject obj = sharePref.getObj("userInfo");
+            Utils.Log("MainFragment");
+            Utils.Log(obj.toString());
+            users = new UserInfoModels(obj.getString("email"),
+                    Integer.parseInt(obj.getString("height")),
+                    Integer.parseInt(obj.getString("weight")),
+                    Integer.parseInt(obj.getString("age")),
+                    obj.getString("gender"),
+                    obj.getDouble("activity"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        UsersEmail = (TextView) getView().findViewById(R.id.usersEmail);
+        UsersEmail.setText(users.getEmail());
+
         Calendar c = Calendar.getInstance();
         int y = c.get(Calendar.YEAR);
         int m = c.get(Calendar.MONTH);
         int d = c.get(Calendar.DAY_OF_MONTH);
+
         tvDate = (ImageView) getView().findViewById(R.id.tv_text1);
         tvDate1 = (TextView) getView().findViewById(R.id.tv_text);
 
@@ -87,24 +112,21 @@ public class MainFragment extends Fragment {
         breakfast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent itn = new Intent(getActivity(), BreakfastActivity.class);
-                startActivity(itn);
+                swapMeal("breakfast");
             }
         });
 
         lunch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent itn = new Intent(getActivity(), LunchActivity.class);
-                startActivity(itn);
+                swapMeal("lunch");
 
             }
         });
         dinner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent itn = new Intent(getActivity(), DinnerActivity.class);
-                startActivity(itn);
+                swapMeal("dinner");
             }
         });
 
@@ -121,13 +143,18 @@ public class MainFragment extends Fragment {
             @Override
             public void onDateSet(DatePicker datePicker, int y1, int m1, int d1) {
                 String date = d1 + "/" + m1 + "/" + y1;
-                ;
                 tvDate1.setText(date);
             }
         };
     }
 
+    void swapMeal(String meal){
+        Intent itn = new Intent(getActivity(), MealActivity.class);
+        itn.putExtra("Meal",meal);
+        startActivity(itn);
     }
+
+}
 
 
 

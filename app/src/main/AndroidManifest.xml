@@ -36,14 +36,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-    <activity
-        android:name=".Page.DinnerActivity"
-        android:exported="true" />
-    <activity
-        android:name=".Page.LunchActivity"
-        android:exported="true" />
-    <activity
-        android:name=".Page.BreakfastActivity"
+
+        <activity
+        android:name=".Page.MealActivity"
         android:exported="true" />
         <activity
             android:name=".Page.HistoryActivity"

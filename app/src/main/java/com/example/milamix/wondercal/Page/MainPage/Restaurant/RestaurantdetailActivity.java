@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.example.milamix.wondercal.Models.RestaurantModels;
 import com.example.milamix.wondercal.R;
@@ -20,10 +21,12 @@ public class RestaurantdetailActivity extends AppCompatActivity implements OnMap
     private GoogleMap mMap;
     private ActivityRestaurantdetailBinding binding;
     RestaurantModels data;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -34,9 +37,9 @@ public class RestaurantdetailActivity extends AppCompatActivity implements OnMap
                     bundle.getString("name_en"),
                     bundle.getString("name_th"),
                     bundle.getString("detail"),
-                    bundle.getString("latitude"),
-                    bundle.getString("longtitude"),
-                    bundle.getInt("image")
+                    bundle.getDouble("latitude"),
+                    bundle.getDouble("longtitude"),
+                    bundle.getString("img")
             );
         }
 
@@ -50,16 +53,22 @@ public class RestaurantdetailActivity extends AppCompatActivity implements OnMap
         Utils.Log(data.getRestaurantName_en());
         Utils.Log(data.getRestaurantName_th());
         Utils.Log(data.getDetail());
-        Utils.Log(data.getLatitude());
-        Utils.Log(data.getLongtitude());
-    }
+        Utils.Log(String.valueOf(data.getLatitude()));
+        Utils.Log(String.valueOf(data.getLongtitude()));
 
+        TextView name = (TextView)findViewById(R.id.name_rest);
+        TextView detail = (TextView)findViewById(R.id.detail_rest);
+
+        name.setText(data.getRestaurantName_en());
+        detail.setText(data.getDetail());
+    }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        LatLng sydney = new LatLng(13.746875348997376, 100.49320581796165);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Krung Thep"));
+        Utils.Log("Map" + data.getLatitude() +" | "+ data.getLongtitude());
+        LatLng sydney = new LatLng(data.getLatitude(), data.getLongtitude());
+        mMap.addMarker(new MarkerOptions().position(sydney).title(data.getRestaurantName_en()));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 }

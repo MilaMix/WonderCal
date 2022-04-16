@@ -79,7 +79,7 @@ public class RestaurantFragment extends Fragment implements AdapterView.OnItemCl
         mVolleyService = new VolleyService(mResultCallback, getContext());
         mVolleyService.postDataVolleyWithToken("/restaurant/get-restaurant", null);
 
-        Utils.delay(1, new Utils.DelayCallback() {
+        Utils.delay(2, new Utils.DelayCallback() {
             @Override
             public void afterDelay() {
                 setListView();
@@ -104,7 +104,7 @@ public class RestaurantFragment extends Fragment implements AdapterView.OnItemCl
         itn.putExtra("latitude", restaurantModels.get(i).getLatitude());
         itn.putExtra("longtitude", restaurantModels.get(i).getLongtitude());
         itn.putExtra("detail", restaurantModels.get(i).getDetail());
-        itn.putExtra("image", restaurantModels.get(i).getRestaurantImage());
+        itn.putExtra("img", restaurantModels.get(i).getRestaurantImage());
         startActivity(itn);
     }
 
@@ -125,9 +125,9 @@ public class RestaurantFragment extends Fragment implements AdapterView.OnItemCl
                                             obj.getString("name_en"),
                                             obj.getString("name_th"),
                                             obj.getString("detail"),
-                                            obj.getString("latitude"),
-                                            obj.getString("longitude"),
-                                            R.drawable.ic_launcher_background
+                                            obj.getDouble("latitude"),
+                                            obj.getDouble("longitude"),
+                                            obj.getString("img")
                                     ));
                         }
                     }

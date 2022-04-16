@@ -6,21 +6,21 @@ public class RestaurantModels {
     private String RestaurantName_en;
     private String RestaurantName_th;
     private String detail;
-    private String latitude;
-    private String longtitude;
+    private double latitude;
+    private double longtitude;
 
     private String URL_img;
 
-    private int RestaurantImage;
+    private String RestaurantImage_URL;
 
     public RestaurantModels(
             int Restaurant_id,
             String RestaurantName_en,
             String RestaurantName_th,
             String detail,
-            String latitude,
-            String longtitude,
-            int RestaurantImage
+            double latitude,
+            double longtitude,
+            String RestaurantImage_URL
     ) {
         this.Restaurant_id = Restaurant_id;
         this.RestaurantName_en = RestaurantName_en;
@@ -28,7 +28,7 @@ public class RestaurantModels {
         this.detail = detail;
         this.latitude = latitude;
         this.longtitude = longtitude;
-        this.RestaurantImage = RestaurantImage;
+        this.RestaurantImage_URL = RestaurantImage_URL;
     }
 
     public int getRestaurant_id(){
@@ -43,14 +43,14 @@ public class RestaurantModels {
     public String getDetail(){
         return this.detail;
     }
-    public String getLatitude(){
+    public double getLatitude(){
         return this.latitude;
     }
-    public String getLongtitude(){
+    public double getLongtitude(){
         return this.longtitude;
     }
-    public int getRestaurantImage(){
-        return this.RestaurantImage;
+    public String getRestaurantImage(){
+        return this.RestaurantImage_URL;
     }
 }
 

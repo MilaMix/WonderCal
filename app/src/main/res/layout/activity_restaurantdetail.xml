@@ -20,11 +20,10 @@
         tools:context="com.paki.venturedive.awtest.MapsActivity" />
 
     <TextView
-        android:id="@+id/Name"
+        android:id="@+id/name_rest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Name"
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +40,7 @@
         android:scrollbarSize="3dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Name">
+        app:layout_constraintTop_toBottomOf="@+id/name_rest">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -49,13 +48,12 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/Detail"
+                android:id="@+id/detail_rest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:paddingHorizontal="18dp"
                 android:paddingVertical="5dp"
-                android:text="hjhvhjgjkjhjhjhjhjhjhjd f       tdfddhjhvhjgmilamixjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhj                     hvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfddhjhvhjgjkjhjhjhjhjhjhjdftdfdd"
                 android:textSize="15sp" />
         </LinearLayout>
     </ScrollView>

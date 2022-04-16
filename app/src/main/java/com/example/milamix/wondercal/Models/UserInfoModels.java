@@ -12,6 +12,20 @@ public class UserInfoModels {
     private String gender;
     private double activity;
 
+    public UserInfoModels(String email,
+                          int height,
+                          int weight,
+                          int age,
+                          String gender,
+                          double activity){
+        this.email = email;
+        this.height = height;
+        this.weight = weight;
+        this.age = age;
+        this.gender = gender;
+        this.activity = activity;
+    }
+
     public UserInfoModels(){
         this.email = "";
         this.height = 0;

@@ -141,7 +141,7 @@
 
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/usersEmail"
         android:layout_width="95dp"
         android:layout_height="34dp"
         android:text="Username"
@@ -162,7 +162,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintTop_toBottomOf="@+id/usersEmail" />
 
     <TextView
         android:id="@+id/textView2"
@@ -241,7 +241,7 @@
         android:layout_width="71dp"
         android:layout_height="67dp"
         android:src="@drawable/profile"
-        app:layout_constraintBottom_toTopOf="@+id/textView11"
+        app:layout_constraintBottom_toTopOf="@+id/usersEmail"
         app:layout_constraintEnd_toStartOf="@+id/imageView12"
         app:layout_constraintStart_toEndOf="@+id/imageView11"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
