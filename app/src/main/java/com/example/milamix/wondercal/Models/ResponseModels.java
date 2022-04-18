@@ -19,6 +19,10 @@ public class ResponseModels {
         return response.getJSONObject("data");
     }
 
+    public String getDataString() throws JSONException {
+        return response.getString("data");
+    }
+
     public String getToken() throws JSONException {
         JSONObject data = response.getJSONObject("data");
         return data.getString("token");
