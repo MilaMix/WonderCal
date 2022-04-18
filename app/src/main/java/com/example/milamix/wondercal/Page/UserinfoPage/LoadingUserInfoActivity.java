@@ -49,6 +49,7 @@ public class LoadingUserInfoActivity extends AppCompatActivity {
 
     void initVolleyCallback(){
         boolean isEditProfile = sharePref.getBoolean("isEditProfile");
+        boolean isEditImage = sharePref.getBoolean("isEditImage");
         mResultCallback = new IResult() {
             @Override
             public void notifySuccess(JSONObject response) {
@@ -56,9 +57,14 @@ public class LoadingUserInfoActivity extends AppCompatActivity {
                 try {
                     if(res.getStatus().equalsIgnoreCase("success")){
                         sharePref.saveObj("userInfo",res.getData());
-                        sharePref.saveBoolean("isEditProfile",false);
-                        if(isEditProfile) finish();
-                        else swapPage("Main");
+                        if(isEditImage){
+                            sharePref.saveBoolean("isEditImage",false);
+                            finish();
+                        }
+                        if(isEditProfile) {
+                            sharePref.saveBoolean("isEditProfile",false);
+                            finish();
+                        }else swapPage("Main");
                     }else swapPage("UsersInfo");
                 } catch (JSONException e) {
                     e.printStackTrace();

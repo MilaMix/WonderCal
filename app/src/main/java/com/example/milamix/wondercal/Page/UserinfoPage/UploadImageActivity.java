@@ -1,4 +1,4 @@
-package com.example.milamix.wondercal.Page;
+package com.example.milamix.wondercal.Page.UserinfoPage;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,10 +26,17 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.example.milamix.wondercal.Models.DataPartModels;
+import com.example.milamix.wondercal.Models.ResponseErrorModels;
 import com.example.milamix.wondercal.Models.ResponseModels;
+import com.example.milamix.wondercal.Models.RestaurantModels;
+import com.example.milamix.wondercal.Models.UserInfoModels;
+import com.example.milamix.wondercal.Page.LoginPage.LoginActivity;
+import com.example.milamix.wondercal.Page.MainPage.MainActivity;
 import com.example.milamix.wondercal.R;
+import com.example.milamix.wondercal.Service.IResult;
 import com.example.milamix.wondercal.Service.SharePref;
 import com.example.milamix.wondercal.Service.VolleyMultipartRequest;
+import com.example.milamix.wondercal.Service.VolleyService;
 import com.example.milamix.wondercal.Utils.Utils;
 
 import org.json.JSONException;
@@ -36,25 +44,50 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class UploadImageActivity extends AppCompatActivity {
     SharePref sharePref = new SharePref(this);
+
     private static final String ROOT_URL = "http://murphy.thddns.net:5150/image/upload-image";
     private static final int REQUEST_PERMISSIONS = 100;
     private static final int PICK_IMAGE_REQUEST =1 ;
+
+    IResult mResultCallback = null;
+    VolleyService mVolleyService;
+
+    Intent itn;
+
     private Bitmap bitmap;
     private String filePath;
+
     ImageView imageView;
     TextView textView;
+    Button btn_uploadImage;
+
+    UserInfoModels users = new UserInfoModels();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_image);
 
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+
+        if(bundle != null){
+            users.setEmail(bundle.getString("email"));
+        }else{
+            users.setEmail(sharePref.getString("email"));
+        }
         //initializing views
+
+        btn_uploadImage = findViewById(R.id.btn_updateImage);
+        btn_uploadImage.setEnabled(false);
         imageView =  findViewById(R.id.imageView);
         textView =  findViewById(R.id.textview);
 
@@ -68,7 +101,6 @@ public class UploadImageActivity extends AppCompatActivity {
                     if ((ActivityCompat.shouldShowRequestPermissionRationale(UploadImageActivity.this,
                             Manifest.permission.WRITE_EXTERNAL_STORAGE)) && (ActivityCompat.shouldShowRequestPermissionRationale(UploadImageActivity.this,
                             Manifest.permission.READ_EXTERNAL_STORAGE))) {
-
                     } else {
                         ActivityCompat.requestPermissions(UploadImageActivity.this,
                                 new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE},
@@ -78,11 +110,8 @@ public class UploadImageActivity extends AppCompatActivity {
                     Log.e("Else", "Else");
                     showFileChooser();
                 }
-
-
             }
         });
-
     }
 
     private void showFileChooser() {
@@ -143,21 +172,22 @@ public class UploadImageActivity extends AppCompatActivity {
     }
 
     private void uploadBitmap(final Bitmap bitmap) {
-
+        Log.d("Upload","Uploading");
         VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, ROOT_URL,
                 new Response.Listener<NetworkResponse>() {
                     @Override
                     public void onResponse(NetworkResponse response) {
                         try {
                             JSONObject obj = new JSONObject(new String(response.data));
-                            ResponseModels res = new ResponseModels(obj);
-                            Utils.Log(response.toString());
-                            if(res.getStatus() != "success"){
-                                Toast.makeText(getApplicationContext(), "Please try again", Toast.LENGTH_SHORT).show();
-                            }else{
-                                Toast.makeText(getApplicationContext(), res.getMessage(), Toast.LENGTH_SHORT).show();
-                                sharePref.saveString("img",res.getDataString());
-                            }
+                            Log.d("Upload",obj.getString("status"));
+                            Log.d("Upload",obj.getString("message"));
+                            Log.d("Upload",obj.getString("data"));
+
+                            Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+                            sharePref.saveString("img",obj.getString("data"));
+                            users.setImg(obj.getString("data"));
+
+                            btn_uploadImage.setEnabled(true);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -171,7 +201,6 @@ public class UploadImageActivity extends AppCompatActivity {
                     }
                 }) {
 
-
             @Override
             protected Map<String, DataPartModels> getByteData() {
                 Map<String, DataPartModels> params = new HashMap<>();
@@ -180,8 +209,80 @@ public class UploadImageActivity extends AppCompatActivity {
                 return params;
             }
         };
-
         Volley.newRequestQueue(this).add(volleyMultipartRequest);
     }
 
+    public void btn_update_image(View view) throws JSONException {
+        initVolleyCallback();
+        mVolleyService = new VolleyService(mResultCallback, this);
+        mVolleyService.postDataVolleyWithToken("/usersInfo/update-users-image",users.getJSONObj());
+    }
+
+    void initVolleyCallback(){
+        mResultCallback = new IResult() {
+            @Override
+            public void notifySuccess(JSONObject response) {
+                ResponseModels res = new ResponseModels(response);
+                try {
+                    new SweetAlertDialog(UploadImageActivity.this,SweetAlertDialog.SUCCESS_TYPE)
+                            .setContentText(res.getMessage())
+                            .setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                    sweetAlertDialog.dismiss();
+                                    swapToLoadingUserInfoPage();
+                                }
+                            }).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void notifyError(VolleyError error) {
+                ResponseErrorModels err = new ResponseErrorModels(error);
+                if(err.getStatusCode() == 401){
+                    new SweetAlertDialog(UploadImageActivity.this,SweetAlertDialog.ERROR_TYPE)
+                            .setContentText("Session time out")
+                            .setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                    sweetAlertDialog.dismiss();
+                                    swapToLoginPage();
+                                }
+                            }).show();
+                }else{
+                    try {
+                        new SweetAlertDialog(UploadImageActivity.this,SweetAlertDialog.ERROR_TYPE)
+                                .setContentText(err.getError())
+                                .setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
+                                    @Override
+                                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                        sweetAlertDialog.dismiss();
+                                    }
+                                }).show();
+                    } catch (UnsupportedEncodingException | JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+    }
+
+    private void swapToLoginPage(){
+        itn = new Intent(this, LoginActivity.class);
+        startActivity(itn);
+        finish();
+    }
+
+    private void swapToLoadingUserInfoPage(){
+        itn = new Intent(this, LoadingUserInfoActivity.class);
+        startActivity(itn);
+        finish();
+    }
+
+    public void btn_skip_uploadImage(View view) {
+        itn = new Intent(this, LoadingUserInfoActivity.class);
+        startActivity(itn);
+        finish();
+    }
 }

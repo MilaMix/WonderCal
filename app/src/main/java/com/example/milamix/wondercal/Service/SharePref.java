@@ -25,6 +25,8 @@ public class SharePref {
         saveString("email","");
         saveBoolean("isLogin",false);
         saveString("lastLogin","");
+        saveString("img","");
+        saveObj("userInfo",null);
     }
 
     public void saveObj(String key, JSONObject obj){

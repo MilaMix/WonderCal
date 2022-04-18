@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.android.volley.VolleyError;
 import com.example.milamix.wondercal.Page.LoginPage.LoginActivity;
 import com.example.milamix.wondercal.Models.UserInfoModels;
+import com.example.milamix.wondercal.Page.MainPage.MainActivity;
 import com.example.milamix.wondercal.R;
 import com.example.milamix.wondercal.Service.IResult;
 import com.example.milamix.wondercal.Models.ResponseErrorModels;
@@ -128,7 +129,7 @@ public class UserInfoActivity extends AppCompatActivity {
         users.setEmail(sharePref.getString("email"));
         users.setGender(genders[index_gender]);
         users.setAge(Integer.parseInt(age.getText().toString()));
-
+        users.setImg("");
         Utils.Log(users.getJSONObj().toString());
         initVolleyCallback();
         mVolleyService = new VolleyService(mResultCallback, this);
@@ -150,8 +151,8 @@ public class UserInfoActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(SweetAlertDialog sweetAlertDialog) {
                                     sweetAlertDialog.dismiss();
-                                    if(isEditProfile) swapToMainPage();
-                                    else swapToLoadingUserInfoPage();
+                                    if(isEditProfile) swapToLoadingUserInfoPage();
+                                    else swapToUploadImagePage();
                                 }
                             }).show();
                 } catch (JSONException e) {
@@ -190,13 +191,14 @@ public class UserInfoActivity extends AppCompatActivity {
         };
     }
 
-    private void swapToLoadingUserInfoPage(){
-        itn = new Intent(this, LoadingUserInfoActivity.class);
+    private void swapToUploadImagePage(){
+        itn = new Intent(this, UploadImageActivity.class);
+        itn.putExtra("email",users.getEmail());
         startActivity(itn);
         finish();
     }
 
-    private void swapToMainPage(){
+    private void swapToLoadingUserInfoPage(){
         itn = new Intent(this, LoadingUserInfoActivity.class);
         startActivity(itn);
         finish();

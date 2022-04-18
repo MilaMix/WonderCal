@@ -89,7 +89,8 @@ public class MainFragment extends Fragment {
                     Integer.parseInt(obj.getString("weight")),
                     Integer.parseInt(obj.getString("age")),
                     obj.getString("gender"),
-                    obj.getDouble("activity"));
+                    obj.getDouble("activity"),
+                    obj.getString("image"));
         } catch (JSONException e) {
             e.printStackTrace();
         }

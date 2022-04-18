@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.milamix.wondercal.Page.LoginPage.LoginActivity;
 import com.example.milamix.wondercal.Page.MainPage.MainFragment;
+import com.example.milamix.wondercal.Page.UserinfoPage.UploadImageActivity;
 import com.example.milamix.wondercal.R;
 import com.example.milamix.wondercal.Page.UserinfoPage.UserInfoActivity;
 import com.example.milamix.wondercal.Service.SharePref;
@@ -28,6 +29,7 @@ public class SettingsFragment<contact> extends Fragment {
     private TextView profile;
     private TextView contact;
     private ImageView logout;
+    private TextView changeImage;
     private Object Bundle;
 
     public SettingsFragment() { }
@@ -42,8 +44,24 @@ public class SettingsFragment<contact> extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         SharePref sharePref = new SharePref(getContext());
         contact = getView().findViewById(R.id.Contact);
+        changeImage = getView().findViewById(R.id.change_image);
         logout = getView().findViewById(R.id.logout);
         profile = getView().findViewById(R.id.Profile);
+
+        changeImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sharePref.saveBoolean("isEditImage",true);
+                Utils.delay(1, new Utils.DelayCallback() {
+                    @Override
+                    public void afterDelay() {
+                        itn = new Intent(getActivity(), UploadImageActivity.class);
+                        startActivity(itn);
+                        replaceFragment(new MainFragment());
+                    }
+                });
+            }
+        });
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

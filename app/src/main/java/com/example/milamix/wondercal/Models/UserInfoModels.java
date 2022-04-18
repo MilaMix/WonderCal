@@ -11,19 +11,22 @@ public class UserInfoModels {
     private int age;
     private String gender;
     private double activity;
+    private String img;
 
     public UserInfoModels(String email,
                           int height,
                           int weight,
                           int age,
                           String gender,
-                          double activity){
+                          double activity,
+                          String img){
         this.email = email;
         this.height = height;
         this.weight = weight;
         this.age = age;
         this.gender = gender;
         this.activity = activity;
+        this.img = img;
     }
 
     public UserInfoModels(){
@@ -33,6 +36,7 @@ public class UserInfoModels {
         this.age = 0;
         this.gender = "male";
         this.activity = 1.2;
+        this.img = "";
     }
 
     public void setEmail(String email) {
@@ -59,6 +63,10 @@ public class UserInfoModels {
         this.weight = weight;
     }
 
+    public void setImg(String img){ this.img = img;}
+
+    public String getImg(){return this.img;}
+
     public String getEmail() {
         return this.email;
     }
@@ -83,6 +91,7 @@ public class UserInfoModels {
         obj.put("age", this.age);
         obj.put("gender", this.gender);
         obj.put("activity", this.activity);
+        obj.put("image", this.img);
         return obj;
     }
 }
