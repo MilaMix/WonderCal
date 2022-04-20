@@ -83,6 +83,7 @@ public class UserInfoModels {
         return weight;
     }
 
+    
     public JSONObject getJSONObj() throws JSONException {
         JSONObject obj = new JSONObject();
         obj.put("email", this.email);
