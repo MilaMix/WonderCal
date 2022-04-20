@@ -83,6 +83,18 @@ public class UserInfoModels {
         return weight;
     }
 
+    public String getGender(){return gender;}
+
+    public String getBMR(){
+        double bmr = 0;
+        if(gender.equalsIgnoreCase("male")){
+            bmr = 66 + (13.7 * weight) + (5*height)-(6.8*age);
+        }else{
+            bmr = 665 + (9.6 * weight) + (1.8*height)-(4.7*age);
+        }
+        return String.valueOf((int)(bmr * activity));
+    }
+
     public JSONObject getJSONObj() throws JSONException {
         JSONObject obj = new JSONObject();
         obj.put("email", this.email);

@@ -21,6 +21,7 @@ import com.example.milamix.wondercal.Page.MealActivity;
 import com.example.milamix.wondercal.R;
 import com.example.milamix.wondercal.Service.SharePref;
 import com.example.milamix.wondercal.Utils.Utils;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,7 +47,11 @@ public class MainFragment extends Fragment {
     private ImageView breakfast;
     private ImageView lunch;
     private ImageView dinner;
+    private ImageView img;
 
+    private TextView txtW;
+    private TextView txtH;
+    private TextView txtB;
     private DatePickerDialog.OnDateSetListener setListener;
 
     public MainFragment() {
@@ -95,8 +100,26 @@ public class MainFragment extends Fragment {
             e.printStackTrace();
         }
 
+        img = (ImageView)getView().findViewById(R.id.img_main_profile);
+        txtW = (TextView)getView().findViewById(R.id.txtweight);
+        txtH = (TextView)getView().findViewById(R.id.txtheight);
+        txtB = (TextView)getView().findViewById(R.id.txtBMR);
         UsersEmail = (TextView) getView().findViewById(R.id.usersEmail);
+
         UsersEmail.setText(users.getEmail());
+        txtH.setText(users.getHeight()+"");
+        txtW.setText(users.getWeight()+"");
+        txtB.setText(users.getBMR()+"");
+
+        String url = users.getImg().equalsIgnoreCase("")?
+                "https://ggsc.s3.amazonaws.com/images/uploads/The_Science-Backed_Benefits_of_Being_a_Dog_Owner.jpg":
+                users.getImg();
+
+        Picasso.get()
+                .load(url)
+                .placeholder(R.mipmap.ic_launcher).fit()
+                .error(R.mipmap.ic_launcher)
+                .into(img);
 
         Calendar c = Calendar.getInstance();
         int y = c.get(Calendar.YEAR);
