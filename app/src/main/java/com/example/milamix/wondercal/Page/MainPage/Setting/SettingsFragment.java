@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.milamix.wondercal.Models.UserInfoModels;
 import com.example.milamix.wondercal.Page.LoginPage.LoginActivity;
 import com.example.milamix.wondercal.Page.MainPage.MainFragment;
 import com.example.milamix.wondercal.Page.UserinfoPage.UploadImageActivity;
@@ -22,6 +23,10 @@ import com.example.milamix.wondercal.R;
 import com.example.milamix.wondercal.Page.UserinfoPage.UserInfoActivity;
 import com.example.milamix.wondercal.Service.SharePref;
 import com.example.milamix.wondercal.Utils.Utils;
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class SettingsFragment<contact> extends Fragment {
     Intent itn;
@@ -30,7 +35,10 @@ public class SettingsFragment<contact> extends Fragment {
     private TextView contact;
     private ImageView logout;
     private TextView changeImage;
+    private ImageView img_profile;
     private Object Bundle;
+
+    UserInfoModels users = new UserInfoModels();
 
     public SettingsFragment() { }
 
@@ -47,6 +55,25 @@ public class SettingsFragment<contact> extends Fragment {
         changeImage = getView().findViewById(R.id.change_image);
         logout = getView().findViewById(R.id.logout);
         profile = getView().findViewById(R.id.Profile);
+        img_profile = getView().findViewById(R.id.img_profile);
+        JSONObject obj;
+        try {
+            obj = sharePref.getObj("userInfo");
+            users.setImg(obj.getString("image"));
+            Utils.Log(obj.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        String url_image = users.getImg().equalsIgnoreCase("")
+                ? "https://dict.drkrok.com/wp-content/uploads/2021/11/Channelcatfish-300x225.jpg" : users.getImg();
+
+        Picasso.get()
+                .load(url_image)
+                .placeholder(R.mipmap.ic_launcher).fit()
+                .error(R.mipmap.ic_launcher)
+                .into(img_profile);
 
         changeImage.setOnClickListener(new View.OnClickListener() {
             @Override
