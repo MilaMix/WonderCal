@@ -66,11 +66,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5"
+        app:layout_constraintTop_toBottomOf="@+id/imageFood"
         app:layout_constraintVertical_bias="0.060000002">
 
         <AutoCompleteTextView
-            android:id="@+id/GenderCompleteTextView"
+            android:id="@+id/MealCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:inputType="none"
@@ -79,24 +79,25 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="wrap_content"
-        android:layout_height="245dp"
+        android:id="@+id/imageFood"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addMenuFoodNameTh"
-        app:layout_constraintVertical_bias="0.01999998"
+        app:layout_constraintVertical_bias="0.050000012"
         tools:srcCompat="@tools:sample/avatars" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonAddFood"
         style="@style/Widget.Material3.Button"
         android:layout_width="226dp"
         android:layout_height="50dp"
         android:text="Add"
         android:textColor="@color/black"
         android:textSize="15sp"
+        android:onClick="btn_add_food"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
