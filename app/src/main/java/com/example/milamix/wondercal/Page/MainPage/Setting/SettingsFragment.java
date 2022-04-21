@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.milamix.wondercal.Models.UserInfoModels;
 import com.example.milamix.wondercal.Page.LoginPage.LoginActivity;
+import com.example.milamix.wondercal.Page.MainPage.MainActivity;
 import com.example.milamix.wondercal.Page.MainPage.MainFragment;
 import com.example.milamix.wondercal.Page.UserinfoPage.UploadImageActivity;
 import com.example.milamix.wondercal.R;
@@ -27,6 +28,8 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class SettingsFragment<contact> extends Fragment {
     Intent itn;
@@ -115,13 +118,26 @@ public class SettingsFragment<contact> extends Fragment {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                itn = new Intent(getActivity(), LoginActivity.class);
-                startActivity(itn);
-                sharePref.saveLogout();
-                getActivity().finish();
+                new SweetAlertDialog(getActivity(),SweetAlertDialog.WARNING_TYPE)
+                        .setContentText("Are you sure to close App")
+                        .setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                sweetAlertDialog.dismiss();
+                                sharePref.saveLogout();
+                                getActivity().finish();
+                                itn = new Intent(getActivity(), LoginActivity.class);
+                                startActivity(itn);
+                            }
+                        })
+                        .setCancelButton("Cancel", new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                sweetAlertDialog.dismiss();
+                            }
+                        }).show();
             }
         });
-
     }
 
     private void replaceFragment(Fragment fragment){

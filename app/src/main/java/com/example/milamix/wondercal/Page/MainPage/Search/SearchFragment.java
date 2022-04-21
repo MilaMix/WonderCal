@@ -11,22 +11,18 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ListView;
 
 import com.android.volley.VolleyError;
 import com.example.milamix.wondercal.Models.FoodModels;
 import com.example.milamix.wondercal.Models.ResponseErrorModels;
 import com.example.milamix.wondercal.Models.ResponseModels;
-import com.example.milamix.wondercal.Models.RestaurantModels;
 import com.example.milamix.wondercal.Page.LoginPage.LoginActivity;
-import com.example.milamix.wondercal.Page.MainPage.Data;
-import com.example.milamix.wondercal.Page.MainPage.Restaurant.RestaurantAdapter;
+import com.example.milamix.wondercal.Page.MainPage.Restaurant.RestaurantdetailActivity;
 import com.example.milamix.wondercal.R;
 import com.example.milamix.wondercal.Service.IResult;
 import com.example.milamix.wondercal.Service.VolleyService;
@@ -37,7 +33,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -193,7 +188,13 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemClickL
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+        Intent itn = new Intent(getActivity(), AddMenuActivity.class);
+        itn.putExtra("id", food_list.get(i).getId());
+        itn.putExtra("name_en", food_list.get(i).getName_en());
+        itn.putExtra("name_th", food_list.get(i).getName_th());
+        itn.putExtra("img", food_list.get(i).getUrl_img());
+        itn.putExtra("cal", food_list.get(i).getCal());
+        startActivity(itn);
     }
 
     private void swapToLoginPage(){

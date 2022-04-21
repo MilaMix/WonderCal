@@ -27,7 +27,6 @@ public class RestaurantdetailActivity extends AppCompatActivity implements OnMap
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 

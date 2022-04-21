@@ -14,8 +14,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.milamix.wondercal.Models.ResponseErrorModels;
+import com.example.milamix.wondercal.Models.ResponseModels;
 import com.example.milamix.wondercal.Page.LoginPage.LoginActivity;
+import com.example.milamix.wondercal.Page.MainPage.Search.AddMenuActivity;
 import com.example.milamix.wondercal.R;
+import com.example.milamix.wondercal.Service.IResult;
+import com.example.milamix.wondercal.Service.VolleyService;
 import com.example.milamix.wondercal.Utils.Utils;
 
 import org.json.JSONException;
@@ -26,6 +31,9 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class RegisterActivity extends AppCompatActivity {
     Intent itn;
+
+    IResult mResultCallback = null;
+    VolleyService mVolleyService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,66 +55,59 @@ public class RegisterActivity extends AppCompatActivity {
         obj.put("email", emailTxt.getText().toString());
         obj.put("password", password);
 
-        String url =  getResources().getString(R.string.api_endpoint);
-        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST,url+"/users/register",obj,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            String message = response.getString("message");
-                            Utils.Log(response.toString());
-                            new SweetAlertDialog(RegisterActivity.this)
-                                    .setContentText("Register")
-                                    .setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
+        initVolleyCallback();
+        mVolleyService = new VolleyService(mResultCallback, this);
+        mVolleyService.postDataVolleyWithToken("/users/register", obj);
+    }
+
+    void initVolleyCallback(){
+        mResultCallback = new IResult() {
+            @Override
+            public void notifySuccess(JSONObject response) {
+                ResponseModels res = new ResponseModels(response);
+                Utils.Log(response.toString());
+                new SweetAlertDialog(RegisterActivity.this)
+                        .setContentText("Register")
+                        .setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                swapToLoginPage();
+                                sweetAlertDialog.dismiss();
+                            }
+                        }).show();
+            }
+            @Override
+            public void notifyError(VolleyError error) {
+                ResponseErrorModels err = new ResponseErrorModels(error);
+                if(error.networkResponse.data!=null) {
+                    try {
+                        String body = new String(error.networkResponse.data,"UTF-8");
+                        JSONObject bodyError = new JSONObject(body.toString());
+
+                        Utils.Log("message => "+bodyError.getString("error"));
+                        String message = bodyError.getString("error");
+
+                        new SweetAlertDialog(RegisterActivity.this)
+                                .setContentText(message)
+                                .setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
+                                    @Override
+                                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                        sweetAlertDialog.dismiss();
+                                    }
+                                }).show();
+                    } catch (UnsupportedEncodingException | JSONException e) { }
+                }else{
+                    new SweetAlertDialog(RegisterActivity.this)
+                            .setContentText("Server Error")
+                            .setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
                                 @Override
                                 public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                    swapToLoginPage();
                                     sweetAlertDialog.dismiss();
                                 }
                             }).show();
-                        } catch (JSONException e) { }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        if(error.networkResponse.data!=null) {
-                            try {
-                                String body = new String(error.networkResponse.data,"UTF-8");
-                                JSONObject bodyError = new JSONObject(body.toString());
-
-                                Utils.Log("message => "+bodyError.getString("error"));
-                                String message = bodyError.getString("error");
-
-                                new SweetAlertDialog(RegisterActivity.this)
-                                        .setContentText(message)
-                                        .setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
-                                            @Override
-                                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                                sweetAlertDialog.dismiss();
-                                            }
-                                        }).show();
-                            } catch (UnsupportedEncodingException | JSONException e) { }
-                        }else{
-                            new SweetAlertDialog(RegisterActivity.this)
-                                    .setContentText("Server Error")
-                                    .setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
-                                        @Override
-                                        public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                            sweetAlertDialog.dismiss();
-                                        }
-                                    }).show();
-                        }
-                    }
-                }){
-            @Override
-            public String getBodyContentType() {
-                return "application/json; charset=utf-8";
+                }
             }
         };
-        Utils.LogAPIs(stringRequest);
-        RequestQueue queue = Volley.newRequestQueue(this);
-        queue.add(stringRequest);
     }
 
     private void swapToLoginPage(){

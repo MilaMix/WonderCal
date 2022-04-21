@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.milamix.wondercal.Models.FoodModels;
-import com.example.milamix.wondercal.Page.MainPage.Data;
 import com.example.milamix.wondercal.R;
 import com.squareup.picasso.Picasso;
 
