@@ -1,4 +1,4 @@
-package com.example.milamix.wondercal.Page.MainPage;
+package com.example.milamix.wondercal.Page.MainPage.Search;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,17 +8,20 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.milamix.wondercal.Models.FoodModels;
+import com.example.milamix.wondercal.Page.MainPage.Data;
 import com.example.milamix.wondercal.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class SearchAdapter extends BaseAdapter {
-    private List<Data> mDatas;
+    private List<FoodModels> food_list;
     private LayoutInflater mLayoutInflater;
 
-    public SearchAdapter(Context context, List<Data> aList) {
-        mDatas = aList;
-        mLayoutInflater = LayoutInflater.from(context);
+    public SearchAdapter(Context context, List<FoodModels> food_list) {
+        this.food_list = food_list;
+        this.mLayoutInflater = LayoutInflater.from(context);
     }
 
 
@@ -31,7 +34,7 @@ public class SearchAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return mDatas.size();
+        return food_list.size();
     }
 
     @Override
@@ -51,20 +54,23 @@ public class SearchAdapter extends BaseAdapter {
             view = mLayoutInflater.inflate(R.layout.list_food, viewGroup, false);
             holder = new ViewHolder();
             holder.tvFoodname = (TextView) view.findViewById(R.id.EngFoodName);
-            holder.tvCal = (TextView) view.findViewById(R.id.Cal);
+            holder.tvCal = (TextView) view.findViewById(R.id.Calorie);
             holder.tvP = (TextView) view.findViewById(R.id.TfoodName);
-
-
             holder.imgFood = (ImageView) view.findViewById(R.id.imgFood);
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();
         }
-        String title = mDatas.get(position).getMtxt1();
-        holder.tvFoodname.setText(title);
-        holder.tvP.setText(mDatas.get(position).getMtxt2());
-        holder.tvCal.setText(mDatas.get(position).getMtxt3());
-        holder.imgFood.setImageResource(mDatas.get(position).getmIcon());
+
+        holder.tvCal.setText(String.valueOf(food_list.get(position).getCal()) + " Cal");
+        holder.tvFoodname.setText(food_list.get(position).getName_en());
+        holder.tvP.setText(food_list.get(position).getName_th());
+
+        Picasso.get()
+                .load(food_list.get(position).getUrl_img())
+                .placeholder(R.mipmap.ic_launcher).fit()
+                .error(R.mipmap.ic_launcher)
+                .into(holder.imgFood);
 
         return view;
     }

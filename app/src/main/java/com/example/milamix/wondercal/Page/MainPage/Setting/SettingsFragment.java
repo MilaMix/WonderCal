@@ -50,13 +50,14 @@ public class SettingsFragment<contact> extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        SharePref sharePref = new SharePref(getContext());
+
         contact = getView().findViewById(R.id.Contact);
         changeImage = getView().findViewById(R.id.change_image);
         logout = getView().findViewById(R.id.logout);
         profile = getView().findViewById(R.id.Profile);
         img_profile = getView().findViewById(R.id.img_profile);
         JSONObject obj;
+        SharePref sharePref = new SharePref(getContext());
         try {
             obj = sharePref.getObj("userInfo");
             users.setImg(obj.getString("image"));
@@ -84,7 +85,7 @@ public class SettingsFragment<contact> extends Fragment {
                     public void afterDelay() {
                         itn = new Intent(getActivity(), UploadImageActivity.class);
                         startActivity(itn);
-                        replaceFragment(new MainFragment());
+                        getActivity().finish();
                     }
                 });
             }

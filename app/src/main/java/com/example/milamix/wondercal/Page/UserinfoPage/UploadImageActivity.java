@@ -285,4 +285,10 @@ public class UploadImageActivity extends AppCompatActivity {
         startActivity(itn);
         finish();
     }
+
+    @Override
+    public void onBackPressed() {
+        swapToLoadingUserInfoPage();
+        finish();
+    }
 }
