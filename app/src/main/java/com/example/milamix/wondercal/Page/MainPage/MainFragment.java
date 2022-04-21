@@ -109,7 +109,6 @@ public class MainFragment extends Fragment {
         } catch (AuthFailureError authFailureError) {
             authFailureError.printStackTrace();
         }
-
         SweetAlertDialog pDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.PROGRESS_TYPE);
         pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
         pDialog.setTitleText("Loading");
