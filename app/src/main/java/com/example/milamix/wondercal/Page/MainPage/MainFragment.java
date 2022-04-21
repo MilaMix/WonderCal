@@ -16,10 +16,19 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.VolleyError;
+import com.example.milamix.wondercal.Models.ResponseErrorModels;
+import com.example.milamix.wondercal.Models.ResponseModels;
 import com.example.milamix.wondercal.Models.UserInfoModels;
+import com.example.milamix.wondercal.Page.LoginPage.LoginActivity;
 import com.example.milamix.wondercal.Page.MealActivity;
+import com.example.milamix.wondercal.Page.UserinfoPage.LoadingUserInfoActivity;
+import com.example.milamix.wondercal.Page.UserinfoPage.UserInfoActivity;
 import com.example.milamix.wondercal.R;
+import com.example.milamix.wondercal.Service.IResult;
 import com.example.milamix.wondercal.Service.SharePref;
+import com.example.milamix.wondercal.Service.VolleyService;
 import com.example.milamix.wondercal.Utils.Utils;
 import com.squareup.picasso.Picasso;
 
@@ -27,6 +36,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Calendar;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
 public class MainFragment extends Fragment {
@@ -53,6 +64,11 @@ public class MainFragment extends Fragment {
     private TextView txtH;
     private TextView txtB;
     private DatePickerDialog.OnDateSetListener setListener;
+
+    Intent itn;
+
+    IResult mResultCallback = null;
+    VolleyService mVolleyService;
 
     public MainFragment() {
         // Required empty public constructor
@@ -83,8 +99,77 @@ public class MainFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        SharePref sharePref = new SharePref(getContext());
+
         super.onViewCreated(view, savedInstanceState);
+
+        try {
+            initLoad();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (AuthFailureError authFailureError) {
+            authFailureError.printStackTrace();
+        }
+
+        SweetAlertDialog pDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        pDialog.setTitleText("Loading");
+        pDialog.setCancelable(false);
+        pDialog.show();
+
+        Utils.delay(4, new Utils.DelayCallback() {
+            @Override
+            public void afterDelay() {
+                pDialog.dismiss();
+                setUp();
+            }
+        });
+    }
+
+    private void initLoad() throws JSONException, AuthFailureError {
+        SharePref sharePref = new SharePref(getContext());
+        String email = sharePref.getString("email");
+        JSONObject obj = new JSONObject();
+        obj.put("email", email);
+        Utils.Log(obj.toString());
+        initVolleyCallback();
+        mVolleyService = new VolleyService(mResultCallback, getContext());
+        mVolleyService.postDataVolleyWithToken("/usersInfo/get-users-info", obj);
+    }
+
+    void initVolleyCallback(){
+        SharePref sharePref = new SharePref(getContext());
+        mResultCallback = new IResult() {
+            @Override
+            public void notifySuccess(JSONObject response) {
+                ResponseModels res = new ResponseModels(response);
+                try {
+                    if(res.getStatus().equalsIgnoreCase("success")) {
+                        sharePref.saveObj("userInfo", res.getData());
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void notifyError(VolleyError error) {
+                ResponseErrorModels err = new ResponseErrorModels(error);
+                if(err.getStatusCode() == 401){
+                    new SweetAlertDialog(getContext(),SweetAlertDialog.ERROR_TYPE)
+                            .setContentText("Session time out")
+                            .setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                    sweetAlertDialog.dismiss();
+                                    swapPage("Login");
+                                }
+                            }).show();
+                }
+            }
+        };
+    }
+
+    void setUp(){
+        SharePref sharePref = new SharePref(getContext());
         try {
             JSONObject obj = sharePref.getObj("userInfo");
             Utils.Log("MainFragment");
@@ -178,6 +263,21 @@ public class MainFragment extends Fragment {
         startActivity(itn);
     }
 
+    void swapPage(String page){
+        switch (page){
+            case "Login":
+                itn = new Intent(getContext(), LoginActivity.class);
+                break;
+            case "UsersInfo":
+                itn = new Intent(getContext(), UserInfoActivity.class);
+                break;
+            case "Main":
+                itn = new Intent(getContext(),MainActivity.class);
+                break;
+        }
+        startActivity(itn);
+        getActivity().finish();
+    }
 }
 
 
