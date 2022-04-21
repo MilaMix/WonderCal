@@ -2,6 +2,7 @@
     <string name="app_name">WonderCal</string>
     <string name="select_activity">Activity</string>
     <string name="select_gender">Gender</string>
+    <string name="select_meal">Meal</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

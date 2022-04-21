@@ -8,47 +8,65 @@
     tools:context=".Page.UserinfoPage.UserInfoActivity">
 
 
-    <LinearLayout
-        android:layout_width="408dp"
-        android:layout_height="178dp"
-        android:layout_marginBottom="624dp"
-        android:background="@drawable/toppastal"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="1dp" />
-
     <RelativeLayout
         android:id="@+id/rela"
-        android:layout_width="210dp"
-        android:layout_height="355dp"
-        android:layout_marginBottom="268dp"
+        android:layout_width="183dp"
+        android:layout_height="470dp"
         android:background="@drawable/shape_left"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/info_show_email"
+        app:layout_constraintVertical_bias="0.19999999"
         tools:ignore="MissingConstraints">
 
     </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/HeadP"
+        android:layout_width="411dp"
+        android:layout_height="105dp"
+        android:background="@drawable/topblue"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints" />
 
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Profile"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/HeadP"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="304dp"
-        android:layout_height="320dp"
-        android:layout_marginBottom="268dp"
+        android:layout_width="320dp"
+        android:layout_height="300dp"
         android:background="@drawable/shape_login"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/rela"
+        app:layout_constraintVertical_bias="0.13" />
 
     <EditText
         android:id="@+id/Weight"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
         android:ems="12"
         android:hint="Weight"
         android:inputType="textPersonName"
@@ -57,9 +75,11 @@
         android:textColor="@color/black"
         android:textColorHint="@color/greyform"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/info_show_email" />
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.13" />
 
     <EditText
         android:id="@+id/Height"
@@ -72,9 +92,11 @@
         android:textColorHint="@color/greyform"
 
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Weight" />
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/Weight"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/Age"
@@ -88,26 +110,30 @@
         android:textColor="@color/black"
         android:textColorHint="@color/greyform"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Height" />
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/Height"
+        app:layout_constraintVertical_bias="0.0" />
 
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/Gender"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="226dp"
-        android:layout_height="55dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:hint="@string/select_gender"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Age">
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/Age"
+        app:layout_constraintVertical_bias="0.01">
 
         <AutoCompleteTextView
             android:id="@+id/GenderCompleteTextView"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="35dp"
             android:inputType="none"
             android:padding="2dp"
             android:textSize="14sp"></AutoCompleteTextView>
@@ -117,60 +143,53 @@
         android:id="@+id/textInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="226dp"
-        android:layout_height="55dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
 
         android:hint="@string/select_activity"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Gender">
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/Gender"
+        app:layout_constraintVertical_bias="0.0">
 
         <AutoCompleteTextView
             android:id="@+id/autoCompleteTextView"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="35dp"
             android:inputType="none"
             android:padding="2dp"
             android:textSize="14sp"></AutoCompleteTextView>
     </com.google.android.material.textfield.TextInputLayout>
 
 
-
     <TextView
         android:id="@+id/info_show_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="104dp"
+        android:text="E-mail"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/HeadP"
+        app:layout_constraintVertical_bias="0.050000012" />
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:onClick="btn_submit_userInfo"
-        android:text="Submit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+        style="@style/Widget.Material3.Button"
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="500dp"
-        android:text="Profile"
-        android:textColor="#121111"
-        android:textSize="25sp"
+        android:layout_width="226dp"
+        android:layout_height="50dp"
+        android:text="Submit"
+        android:textColor="#0B0A0A"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.175" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.16" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

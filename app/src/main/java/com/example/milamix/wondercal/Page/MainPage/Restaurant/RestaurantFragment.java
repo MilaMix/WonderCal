@@ -94,6 +94,12 @@ public class RestaurantFragment extends Fragment implements AdapterView.OnItemCl
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Intent itn = new Intent(getActivity(), RestaurantdetailActivity.class);
         itn.putExtra("id", restaurantModels.get(i).getRestaurant_id());
+        itn.putExtra("name_en", restaurantModels.get(i).getRestaurantName_en());
+        itn.putExtra("name_th", restaurantModels.get(i).getRestaurantName_th());
+        itn.putExtra("detail", restaurantModels.get(i).getDetail());
+        itn.putExtra("latitude", restaurantModels.get(i).getLatitude());
+        itn.putExtra("longtitude", restaurantModels.get(i).getLongtitude());
+        itn.putExtra("img", restaurantModels.get(i).getRestaurantImage());
         startActivity(itn);
     }
 
