@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.VolleyError;
+import com.example.milamix.wondercal.Models.MealModels;
 import com.example.milamix.wondercal.Models.ResponseErrorModels;
 import com.example.milamix.wondercal.Models.ResponseModels;
 import com.example.milamix.wondercal.Models.UserInfoModels;
@@ -32,6 +34,7 @@ import com.example.milamix.wondercal.Service.VolleyService;
 import com.example.milamix.wondercal.Utils.Utils;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -69,6 +72,13 @@ public class MainFragment extends Fragment {
 
     IResult mResultCallback = null;
     VolleyService mVolleyService;
+
+    IResult mResultCallback1 = null;
+    VolleyService mVolleyService1;
+
+    MealModels l;
+    MealModels d;
+    MealModels b;
 
     public MainFragment() {
         // Required empty public constructor
@@ -133,6 +143,17 @@ public class MainFragment extends Fragment {
         initVolleyCallback();
         mVolleyService = new VolleyService(mResultCallback, getContext());
         mVolleyService.postDataVolleyWithToken("/usersInfo/get-users-info", obj);
+
+        TextView selectDate = (TextView)getView().findViewById(R.id.date_select);
+        JSONObject obj1 = new JSONObject();
+        obj1.put("email", email);
+        if(!selectDate.equals("Select Date") && !selectDate.equals("")){
+            obj1.put("date", selectDate.getText().toString());
+        }
+
+        initVolleyCallback1();
+        mVolleyService1 = new VolleyService(mResultCallback1, getContext());
+        mVolleyService1.postDataVolleyWithToken("/usersLog/get-logFood", obj1);
     }
 
     void initVolleyCallback(){
@@ -144,6 +165,46 @@ public class MainFragment extends Fragment {
                 try {
                     if(res.getStatus().equalsIgnoreCase("success")) {
                         sharePref.saveObj("userInfo", res.getData());
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void notifyError(VolleyError error) {
+                ResponseErrorModels err = new ResponseErrorModels(error);
+                if(err.getStatusCode() == 401){
+                    new SweetAlertDialog(getContext(),SweetAlertDialog.ERROR_TYPE)
+                            .setContentText("Session time out")
+                            .setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                    sweetAlertDialog.dismiss();
+                                    swapPage("Login");
+                                }
+                            }).show();
+                }
+            }
+        };
+    }
+
+    void initVolleyCallback1(){
+        mResultCallback1 = new IResult() {
+            @Override
+            public void notifySuccess(JSONObject response) {
+                ResponseModels res = new ResponseModels(response);
+                try {
+                    if(res.getStatus().equalsIgnoreCase("success")) {
+                        Utils.Log("GetLogFood");
+                        JSONObject data = res.getData();
+
+                        JSONArray lunch = data.getJSONArray("lunch");
+                        JSONArray dinner = data.getJSONArray("dinner");
+                        JSONArray breakfast = data.getJSONArray("breakfast");
+
+                        l = new MealModels(lunch);
+                        b = new MealModels(breakfast);
+                        d = new MealModels(dinner);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -188,8 +249,10 @@ public class MainFragment extends Fragment {
         txtW = (TextView)getView().findViewById(R.id.txtweight);
         txtH = (TextView)getView().findViewById(R.id.txtheight);
         txtB = (TextView)getView().findViewById(R.id.txtBMR);
+        TextView totalCal = (TextView)getView().findViewById(R.id.totalCal);
         UsersEmail = (TextView) getView().findViewById(R.id.usersEmail);
 
+        totalCal.setText(String.valueOf(l.getCal()+d.getCal()+b.getCal()));
         UsersEmail.setText(users.getEmail());
         txtH.setText(users.getHeight()+"");
         txtW.setText(users.getWeight()+"");
@@ -211,7 +274,7 @@ public class MainFragment extends Fragment {
         int d = c.get(Calendar.DAY_OF_MONTH);
 
         tvDate = (ImageView) getView().findViewById(R.id.tv_text1);
-        tvDate1 = (TextView) getView().findViewById(R.id.tv_text);
+        tvDate1 = (TextView) getView().findViewById(R.id.date_select);
 
         breakfast = getView().findViewById(R.id.breakfast);
         lunch = getView().findViewById(R.id.lunch);
@@ -257,8 +320,14 @@ public class MainFragment extends Fragment {
     }
 
     void swapMeal(String meal){
+
         Intent itn = new Intent(getActivity(), MealActivity.class);
+        Bundle bundle = new Bundle();
+        itn.putExtras(bundle);
         itn.putExtra("Meal",meal);
+        itn.putExtra("food_list",
+                (meal=="dinner")?d.toString():
+                        (meal=="lunch")?l.toString():b.toString());
         startActivity(itn);
     }
 

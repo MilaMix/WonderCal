@@ -38,7 +38,7 @@ public class AddMenuActivity extends AppCompatActivity {
     private FoodModels food;
     IResult mResultCallback = null;
     VolleyService mVolleyService;
-    JSONObject obj;
+
     String[] meal_list = {"breakfast","lunch","dinner"};
 
     AutoCompleteTextView autoCompleteTxt;
@@ -98,7 +98,7 @@ public class AddMenuActivity extends AppCompatActivity {
     public void btn_add_food(View view) throws JSONException {
 
         SharePref sharePref = new SharePref(this);
-
+        JSONObject obj = new JSONObject();
         obj.put("email",sharePref.getString("email"));
         obj.put("cal",food.getCal());
         obj.put("food",food.getName_en()+","+food.getName_th());
@@ -106,7 +106,7 @@ public class AddMenuActivity extends AppCompatActivity {
 
         initVolleyCallback();
         mVolleyService = new VolleyService(mResultCallback, this);
-        mVolleyService.postDataVolleyWithToken("/food/add-food", obj);
+        mVolleyService.postDataVolleyWithToken("/usersLog/add-food", obj);
     }
 
     void initVolleyCallback(){
