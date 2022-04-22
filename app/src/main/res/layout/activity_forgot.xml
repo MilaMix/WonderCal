@@ -6,18 +6,44 @@
     android:layout_height="match_parent"
     tools:context=".Page.ForgotPage.ForgotActivity">
 
+    <LinearLayout
+        android:id="@+id/linearTop"
+        android:layout_width="411dp"
+        android:layout_height="105dp"
+        android:background="@drawable/topblue"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset Password"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/linearTop"
+        app:layout_constraintEnd_toEndOf="@+id/linearTop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/linearTop" />
+
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="362dp"
-        android:layout_height="292dp"
+        android:layout_width="334dp"
+        android:layout_height="455dp"
         android:background="@drawable/shapereset"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearTop"
         app:layout_constraintVertical_bias="0.391" />
 
     <EditText
@@ -73,12 +99,12 @@
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:textColor="#131313"
-        android:textColorHint="#FAF9F9"
+        android:textColorHint="@color/greyform"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.452"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.303" />
 
 

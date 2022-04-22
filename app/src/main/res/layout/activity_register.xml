@@ -6,6 +6,62 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".Page.RegisterPage.RegisterActivity">
+    <RelativeLayout
+        android:id="@+id/rlHeader"
+        android:layout_width="332dp"
+        android:layout_height="192dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints">
+
+
+        <ImageView
+            android:layout_width="244dp"
+            android:layout_height="131dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="44dp"
+            android:layout_marginBottom="35dp"
+            android:padding="10dp"
+            android:src="@drawable/logo1" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rela"
+        android:layout_width="183dp"
+        android:layout_height="320dp"
+        android:background="@drawable/shape_left"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rlHeader"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints">
+
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/Logintext"
+        android:layout_width="108dp"
+        android:layout_height="34dp"
+        android:gravity="center"
+        android:text="Login"
+        android:fontFamily="@font/butler_regular"
+
+        android:textColor="#0B0B0B"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/rela"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/rela"
+        app:layout_constraintVertical_bias="0.02" />
 
     <EditText
         android:id="@+id/editEmail"
@@ -42,51 +98,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.616" />
-
-    <RelativeLayout
-        android:id="@+id/rlHeader"
-        android:layout_width="413dp"
-        android:layout_height="198dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:layout_width="291dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="61dp"
-            android:padding="10dp"
-            android:src="@drawable/logo1" />
-
-    </RelativeLayout>
-
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="332dp"
-        android:layout_height="321dp"
-        android:background="@drawable/shadow_login"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.637"
-        tools:ignore="MissingConstraints">
-
-    </LinearLayout>
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="201dp"
-        android:layout_height="427dp"
-        android:background="@drawable/shape_right"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rlHeader">
-
-    </RelativeLayout>
 
 
     <Button
@@ -142,18 +153,19 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="270dp"
-        android:layout_marginBottom="220dp"
+
+        android:fontFamily="@font/butler_regular"
         android:text="Register"
         android:textColor="#0B0B0B"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.78"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.29000002" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

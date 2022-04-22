@@ -6,40 +6,58 @@
     android:layout_height="match_parent"
     tools:context=".Page.MealActivity">
 
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="420dp"
-        android:layout_height="157dp"
-        android:layout_marginBottom="624dp"
+    <LinearLayout
+        android:id="@+id/MealL"
+        android:layout_width="411dp"
+        android:layout_height="105dp"
+        android:background="@drawable/topblue"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/topblue" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textMeal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Breakfast"
-        android:textSize="26dp"
+        android:text="Meal"
+        android:fontFamily="@font/butler_regular"
+
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/MealL"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/MealL" />
+
+    <ListView
+        android:id="@+id/LVfood"
+        android:layout_width="409dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.068" />
+        app:layout_constraintTop_toBottomOf="@+id/editmeal"
+        app:layout_constraintVertical_bias="0.060000002" />
 
-    <SearchView
-        android:layout_width="359dp"
-        android:layout_height="47dp"
+    <TextView
+        android:id="@+id/editmeal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit"
+        android:textColor="@color/black"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.931"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView9"
-        app:layout_constraintVertical_bias="0.059"
-        tools:targetApi="honeycomb" />
-
-
+        app:layout_constraintTop_toBottomOf="@+id/MealL"
+        app:layout_constraintVertical_bias="0.025" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

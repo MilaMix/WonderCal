@@ -36,6 +36,7 @@
             android:src="@drawable/logo1" />
     </RelativeLayout>
 
+
     <RelativeLayout
         android:id="@+id/rela"
         android:layout_width="183dp"
@@ -48,7 +49,21 @@
         tools:ignore="MissingConstraints">
 
     </RelativeLayout>
+    <TextView
+        android:id="@+id/Logintext"
+        android:layout_width="108dp"
+        android:layout_height="34dp"
+        android:gravity="center"
+        android:text="Login"
+        android:fontFamily="@font/butler_regular"
 
+        android:textColor="#0B0B0B"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/rela"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/rela"
+        app:layout_constraintVertical_bias="0.02" />
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="319dp"
@@ -62,23 +77,6 @@
         app:layout_constraintTop_toBottomOf="@+id/Logintext"
         app:layout_constraintVertical_bias="0.050000012" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="115dp"
-        android:layout_height="18dp"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:minHeight="48dp"
-        android:onClick="btn_Forgotpass"
-        android:text="Forgot password?"
-        android:textColor="#050505"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.735"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.01999998" />
-
     <EditText
         android:id="@+id/password"
         android:layout_width="wrap_content"
@@ -87,7 +85,8 @@
         android:hint="Password"
         android:inputType="textPassword"
         android:minHeight="48dp"
-        android:textColorHint="#676060"
+        android:textColorHint="#8E8E8E"
+        android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout"
@@ -103,10 +102,8 @@
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
-        android:textColor="#4E4B4B"
-        android:textColorHighlight="#857878"
-        android:textColorHint="#676060"
-        android:textColorLink="#5E5B5B"
+        android:textColor="@color/black"
+        android:textColorHint="#8E8E8E"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout"
@@ -145,19 +142,7 @@
         app:layout_constraintTop_toBottomOf="@+id/button"
         app:layout_constraintVertical_bias="0.18" />
 
-    <TextView
-        android:id="@+id/Logintext"
-        android:layout_width="108dp"
-        android:layout_height="34dp"
-        android:gravity="center"
-        android:text="Login"
-        android:textColor="#0B0B0B"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/rela"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/rela"
-        app:layout_constraintVertical_bias="0.01999998" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
