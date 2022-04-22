@@ -31,7 +31,7 @@ import java.io.UnsupportedEncodingException;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-public class UserInfoActivity extends AppCompatActivity {
+public class  UserInfoActivity extends AppCompatActivity {
     SharePref sharePref = new SharePref(this);
     Intent itn;
     UserInfoModels users = new UserInfoModels();

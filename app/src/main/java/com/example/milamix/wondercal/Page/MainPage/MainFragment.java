@@ -9,7 +9,6 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +23,7 @@ import com.example.milamix.wondercal.Models.ResponseErrorModels;
 import com.example.milamix.wondercal.Models.ResponseModels;
 import com.example.milamix.wondercal.Models.UserInfoModels;
 import com.example.milamix.wondercal.Page.LoginPage.LoginActivity;
-import com.example.milamix.wondercal.Page.MealActivity;
-import com.example.milamix.wondercal.Page.UserinfoPage.LoadingUserInfoActivity;
+import com.example.milamix.wondercal.Page.MealPage.MealActivity;
 import com.example.milamix.wondercal.Page.UserinfoPage.UserInfoActivity;
 import com.example.milamix.wondercal.R;
 import com.example.milamix.wondercal.Service.IResult;

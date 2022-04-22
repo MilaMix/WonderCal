@@ -24,16 +24,29 @@ public class MealModels{
         }
     }
 
+    public List<Food> getFoodModels() {
+        return FoodModels;
+    }
+
     public MealModels(String meal){
-        String[] list = meal.split(":");
-        for(int i = 0 ; i<list.length;i++){
-            String[] P = list[i].split(",");
+        if(meal.length() ==0){
             FoodModels.add(
                     new Food(
-                            Integer.parseInt(P[0]),
-                            P[1]+","+P[2],
-                            Integer.parseInt(P[3])
+                            0,
+                            "2"+","+"3",
+                            Integer.parseInt("asd")
                     ));
+        }else{
+            String[] list = meal.split(":");
+            for(int i = 0 ; i<list.length;i++){
+                String[] P = list[i].split(",");
+                FoodModels.add(
+                        new Food(
+                                Integer.parseInt(P[0]),
+                                P[1]+","+P[2],
+                                Integer.parseInt(P[3])
+                        ));
+            }
         }
     }
 
