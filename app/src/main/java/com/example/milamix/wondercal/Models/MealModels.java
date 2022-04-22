@@ -17,6 +17,7 @@ public class MealModels{
             JSONObject obj = meal.getJSONObject(i);
             FoodModels.add(
                     new Food(
+                            obj.getInt("id"),
                             obj.getString("food"),
                             obj.getInt("calories")
                     ));
@@ -29,8 +30,9 @@ public class MealModels{
             String[] P = list[i].split(",");
             FoodModels.add(
                     new Food(
-                            P[0]+","+P[1],
-                            Integer.parseInt(P[2])
+                            Integer.parseInt(P[0]),
+                            P[1]+","+P[2],
+                            Integer.parseInt(P[3])
                     ));
         }
     }
@@ -46,11 +48,12 @@ public class MealModels{
     public String toString(){
         String str = "";
         for(int i = 0 ;i<this.FoodModels.size();i++){
+            String id = String.valueOf(FoodModels.get(i).getId());
             String nameEn = FoodModels.get(i).getName_en();
             String nameTh = FoodModels.get(i).getName_th();
             String Cal = String.valueOf(FoodModels.get(i).getCal());
             if(i!=0) str += ":";
-            str += nameEn+","+nameTh+","+Cal;
+            str += id+","+nameEn+","+nameTh+","+Cal;
         }
         return str;
     }
@@ -66,11 +69,13 @@ public class MealModels{
 }
 
 class Food{
+    private int id;
     private String name_th;
     private String name_en;
     private int cal = 0;
 
-    public Food(String name,int cal){
+    public Food(int id,String name,int cal){
+        this.id = id;
         String[] nameFood = name.split(",");
         this.name_en = nameFood[0];
         this.name_th = nameFood[1];
@@ -87,5 +92,9 @@ class Food{
 
     public String getName_en() {
         return name_en;
+    }
+
+    public int getId(){
+        return id;
     }
 }
