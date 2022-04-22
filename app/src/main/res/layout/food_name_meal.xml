@@ -7,7 +7,7 @@
 
 
     <TextView
-        android:id="@+id/EngFoodName"
+        android:id="@+id/EngFood"
         android:layout_width="222dp"
         android:layout_height="0dp"
         android:layout_marginTop="7dp"
@@ -15,36 +15,46 @@
         android:textColor="@color/black"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintHorizontal_bias="0.45"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.62" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/TfoodName"
+        android:id="@+id/ThFood"
         android:layout_width="224dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
+        android:layout_marginBottom="7dp"
         android:text="FoodNameFoodNameFoodNameFoodName"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/EngFood"
         app:layout_constraintHorizontal_bias="0.15"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EngFoodName"
+        app:layout_constraintStart_toStartOf="@+id/EngFood"
+        app:layout_constraintTop_toBottomOf="@+id/EngFood"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/Calorie"
+        android:id="@+id/Cal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="18dp"
         android:text="120 Cal"
         android:textColor="#B9A5FF"
         android:textColorHighlight="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/TfoodName"
+        app:layout_constraintBottom_toBottomOf="@+id/ThFood"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toEndOf="@+id/EngFoodName"
-        app:layout_constraintTop_toTopOf="@+id/EngFoodName" />
+        app:layout_constraintStart_toEndOf="@+id/EngFood"
+        app:layout_constraintTop_toTopOf="@+id/EngFood" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/ThFood"
+        app:layout_constraintEnd_toStartOf="@+id/EngFood"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/EngFood"
+        app:srcCompat="@drawable/ic_baseline_remove_circle_outline_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>
