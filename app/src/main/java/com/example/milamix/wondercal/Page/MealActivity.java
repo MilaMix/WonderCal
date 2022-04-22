@@ -4,15 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.widget.TextView;
 
+import com.example.milamix.wondercal.Models.MealModels;
 import com.example.milamix.wondercal.Models.RestaurantModels;
 import com.example.milamix.wondercal.R;
+import com.example.milamix.wondercal.Utils.Utils;
+
+import java.util.List;
 
 public class MealActivity extends AppCompatActivity {
 
     TextView Meal;
     String meal;
+    MealModels food_list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,8 +29,10 @@ public class MealActivity extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
 
         if(bundle != null){
-            meal = bundle.getString("Meal");
-            Meal.setText(meal);
+            String food = bundle.getString("food_list");
+            food_list = new MealModels(food);
+            String meal = bundle.getString("Meal");
+            food_list.toPrintString();
         }
     }
 }

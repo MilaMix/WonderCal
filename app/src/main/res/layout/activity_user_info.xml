@@ -180,7 +180,7 @@
     <Button
         android:id="@+id/button4"
         style="@style/Widget.Material3.Button"
-
+        android:onClick="btn_submit_userInfo"
         android:layout_width="226dp"
         android:layout_height="50dp"
         android:text="Submit"
