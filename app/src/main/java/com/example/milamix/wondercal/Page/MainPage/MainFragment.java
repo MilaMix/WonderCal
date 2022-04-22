@@ -107,9 +107,7 @@ public class MainFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-
         super.onViewCreated(view, savedInstanceState);
-
         try {
             initLoad();
         } catch (JSONException e) {
@@ -135,23 +133,41 @@ public class MainFragment extends Fragment {
     private void initLoad() throws JSONException, AuthFailureError {
         SharePref sharePref = new SharePref(getContext());
         String email = sharePref.getString("email");
+        String selectDate = sharePref.getString("selectDate");
+
+        getUserInfo(email);
+        if(selectDate.equalsIgnoreCase("")) getLogFood(email);
+        else {
+            tvDate1 = (TextView) getView().findViewById(R.id.date_select);
+            tvDate1.setText(selectDate);
+            getLogFoodByDate(email,selectDate);
+        }
+    }
+
+    void getLogFoodByDate(String email,String date) throws JSONException {
+        JSONObject obj1 = new JSONObject();
+        obj1.put("email", email);
+        obj1.put("date", date);
+        initVolleyCallback1();
+        mVolleyService1 = new VolleyService(mResultCallback1, getContext());
+        mVolleyService1.postDataVolleyWithToken("/usersLog/get-logFood", obj1);
+    }
+
+    void getLogFood(String email) throws JSONException {
+        JSONObject obj1 = new JSONObject();
+        obj1.put("email", email);
+        initVolleyCallback1();
+        mVolleyService1 = new VolleyService(mResultCallback1, getContext());
+        mVolleyService1.postDataVolleyWithToken("/usersLog/get-logFood", obj1);
+    }
+
+    void getUserInfo(String email) throws JSONException {
         JSONObject obj = new JSONObject();
         obj.put("email", email);
         Utils.Log(obj.toString());
         initVolleyCallback();
         mVolleyService = new VolleyService(mResultCallback, getContext());
         mVolleyService.postDataVolleyWithToken("/usersInfo/get-users-info", obj);
-
-        TextView selectDate = (TextView)getView().findViewById(R.id.date_select);
-        JSONObject obj1 = new JSONObject();
-        obj1.put("email", email);
-        if(!selectDate.equals("Select Date") && !selectDate.equals("")){
-            obj1.put("date", selectDate.getText().toString());
-        }
-
-        initVolleyCallback1();
-        mVolleyService1 = new VolleyService(mResultCallback1, getContext());
-        mVolleyService1.postDataVolleyWithToken("/usersLog/get-logFood", obj1);
     }
 
     void initVolleyCallback(){
@@ -284,7 +300,6 @@ public class MainFragment extends Fragment {
                 swapMeal("breakfast");
             }
         });
-
         lunch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -312,6 +327,7 @@ public class MainFragment extends Fragment {
             @Override
             public void onDateSet(DatePicker datePicker, int y1, int m1, int d1) {
                 String date = d1 + "/" + m1 + "/" + y1;
+                sharePref.saveString("selectDate",date);
                 tvDate1.setText(date);
             }
         };

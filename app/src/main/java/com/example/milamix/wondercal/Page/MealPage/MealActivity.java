@@ -4,29 +4,27 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.milamix.wondercal.Models.Food;
 import com.example.milamix.wondercal.Models.MealModels;
-import com.example.milamix.wondercal.Models.RestaurantModels;
 import com.example.milamix.wondercal.R;
-import com.example.milamix.wondercal.Utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MealActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class MealActivity extends AppCompatActivity  {
 
     private TextView Meal;
     private String meal;
 
-    private List<MealModels> food_list_data = new ArrayList<>();
-    private List<Data> datas = new ArrayList<>();
+    private List<Food> food_list_data = new ArrayList<>();
     private String food;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,36 +37,20 @@ public class MealActivity extends AppCompatActivity implements AdapterView.OnIte
         if(bundle != null){
             food = bundle.getString("food_list");
             String meal = bundle.getString("Meal");
-            if(food.length() > 1){
-                food_list_data.add(
-                        new MealModels(food));
-            }
+            Meal.setText(meal);
         }
 
+        if(food.length() > 1){
+            MealModels m = new MealModels(food);
+            food_list_data = m.getFoodModels();
+            setListView();
+        }
+    }
 
-        datas.add(new Data("1","1","1"));
-        datas.add(new Data("1","1","1"));
-        datas.add(new Data("1","1","1"));
-        datas.add(new Data("1","1","1"));
-        datas.add(new Data("1","1","1"));
-        datas.add(new Data("1","1","1"));
-
-
-        MealAdapter adapter = new MealAdapter(this,datas);
+    void setListView(){
+        MealAdapter adapter = new MealAdapter(this,food_list_data);
         ListView lv = findViewById(R.id.LVfood);
-        lv.setOnItemClickListener(this);
         lv.setAdapter(adapter);
-    }
-
-    public void displayListview(){
-
-    }
-
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Log.d("TAG", String.valueOf(i));
-        Intent itn = new Intent(this, MealActivity.class);
-        itn.putExtra("recID", i);
-        startActivity(itn);
     }
 
 }
