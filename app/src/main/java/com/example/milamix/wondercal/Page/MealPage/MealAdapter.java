@@ -96,14 +96,7 @@ public class MealAdapter extends BaseAdapter {
                             .setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
                                 @Override
                                 public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                    initVolleyCallback();
-                                    mVolleyService = new VolleyService(mResultCallback, context);
-                                    try {
-                                        mVolleyService.postDataVolleyWithToken("/usersInfo/get-users-info",
-                                                food_list_data.get(position).getJSONObj());
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
+                                    delete(position);
                                 }
                             }).setCancelButton("Cancel", new SweetAlertDialog.OnSweetClickListener() {
                         @Override
@@ -114,6 +107,17 @@ public class MealAdapter extends BaseAdapter {
             }
         });
         return view;
+    }
+
+    void delete(int position){
+        initVolleyCallback();
+        mVolleyService = new VolleyService(mResultCallback, context);
+        try {
+            mVolleyService.postDataVolleyWithToken("/usersLog/delete-logFood",
+                    food_list_data.get(position).getJSONObj());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     void initVolleyCallback(){

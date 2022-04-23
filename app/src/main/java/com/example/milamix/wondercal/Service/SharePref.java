@@ -20,14 +20,17 @@ public class SharePref {
         saveString("email",email);
         saveString("lastLogin",time);
     }
-    public void saveLogout(){
+    public void saveLogout() throws JSONException {
         saveString("token","");
         saveString("email","");
         saveBoolean("isLogin",false);
         saveString("lastLogin","");
         saveString("img","");
-        saveObj("userInfo",null);
         saveString("selectDate","");
+
+        JSONObject obj = new JSONObject();
+        obj.put("a","a");
+        saveObj("userInfo",obj);
     }
 
     public void saveObj(String key, JSONObject obj){

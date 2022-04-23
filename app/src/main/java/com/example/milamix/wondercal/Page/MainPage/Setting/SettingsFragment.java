@@ -124,7 +124,11 @@ public class SettingsFragment<contact> extends Fragment {
                             @Override
                             public void onClick(SweetAlertDialog sweetAlertDialog) {
                                 sweetAlertDialog.dismiss();
-                                sharePref.saveLogout();
+                                try {
+                                    sharePref.saveLogout();
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
                                 getActivity().finish();
                                 itn = new Intent(getActivity(), LoginActivity.class);
                                 startActivity(itn);

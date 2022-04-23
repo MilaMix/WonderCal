@@ -20,7 +20,7 @@ public class VolleyService {
     IResult mResultCallback = null;
     Context mContext;
     private String TAG = "HTTPD";
-    private String host = "http://192.168.43.128:3000";
+    private String host = "http://murphy.thddns.net:5150";
 
     public VolleyService(IResult resultCallback, Context context){
         mResultCallback = resultCallback;
