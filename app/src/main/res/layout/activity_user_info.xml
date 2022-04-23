@@ -42,6 +42,7 @@
         android:layout_height="wrap_content"
         android:text="Profile"
         android:textColor="@color/black"
+        android:fontFamily="@font/butler_medium"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="@+id/HeadP"
         app:layout_constraintEnd_toEndOf="parent"

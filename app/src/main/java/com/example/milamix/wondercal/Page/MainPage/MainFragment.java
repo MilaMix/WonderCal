@@ -266,7 +266,8 @@ public class MainFragment extends Fragment {
         TextView totalCal = (TextView)getView().findViewById(R.id.totalCal);
         UsersEmail = (TextView) getView().findViewById(R.id.usersEmail);
 
-        totalCal.setText(String.valueOf(l.getCal()+d.getCal()+b.getCal()));
+        int totalCal_ = l.getCal()+d.getCal()+b.getCal();
+        totalCal.setText((totalCal_ == 0)? "No record":String.valueOf(totalCal_));
         UsersEmail.setText(users.getEmail());
         txtH.setText(users.getHeight()+"");
         txtW.setText(users.getWeight()+"");
@@ -326,7 +327,7 @@ public class MainFragment extends Fragment {
         setListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int y1, int m1, int d1) {
-                String date = d1 + "/" + m1 + "/" + y1;
+                String date = d1 + "/" + (m1+1) + "/" + y1;
                 sharePref.saveString("selectDate",date);
                 tvDate1.setText(date);
             }

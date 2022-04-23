@@ -41,9 +41,6 @@
             android:name=".Page.MealPage.MealActivity"
             android:exported="true" />
         <activity
-            android:name=".Page.HistoryActivity"
-            android:exported="false" />
-        <activity
             android:name=".Page.UserinfoPage.LoadingUserInfoActivity"
             android:exported="false" />
         <activity

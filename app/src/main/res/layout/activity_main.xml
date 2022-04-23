@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
         app:itemRippleColor="#FFFFFF"
-        app:itemTextColor="#90BCC3"
+        app:itemTextColor="#8EC3DC"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

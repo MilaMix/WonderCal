@@ -59,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Setting"
-        android:fontFamily="@font/butler_regular"
+        android:fontFamily="@font/butler_medium"
         android:textColor="@color/black"
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout"

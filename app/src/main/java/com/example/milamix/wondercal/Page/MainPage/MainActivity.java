@@ -11,6 +11,7 @@ import com.example.milamix.wondercal.Page.MainPage.Restaurant.RestaurantFragment
 import com.example.milamix.wondercal.Page.MainPage.Search.SearchFragment;
 import com.example.milamix.wondercal.Page.MainPage.Setting.SettingsFragment;
 import com.example.milamix.wondercal.R;
+import com.example.milamix.wondercal.Service.SharePref;
 import com.example.milamix.wondercal.databinding.ActivityMainBinding;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -74,4 +75,10 @@ public class MainActivity extends AppCompatActivity {
                 }).show();
     }
 
+    @Override
+    protected void onDestroy() {
+        SharePref sharePref = new SharePref(this);
+        super.onDestroy();
+        sharePref.saveString("selectDate", "");
+    }
 }

@@ -86,7 +86,7 @@ public class MealAdapter extends BaseAdapter {
 
         holder.ThFood.setText(food_list_data.get(position).getName_th());
         holder.EngFood.setText(food_list_data.get(position).getName_en());
-        holder.Cal.setText(food_list_data.get(position).getCal());
+        holder.Cal.setText(String.valueOf(food_list_data.get(position).getCal()));
 
         holder.Trash.setOnClickListener(new View.OnClickListener() {
             @Override

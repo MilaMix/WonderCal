@@ -5,4 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Page.LandingPage.LandingActivity">
+
+    <RelativeLayout
+        android:id="@+id/rlHeader"
+        android:layout_width="332dp"
+        android:layout_height="192dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.39"
+        tools:ignore="MissingConstraints">
+
+
+        <ImageView
+            android:layout_width="244dp"
+            android:layout_height="131dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="44dp"
+            android:layout_marginBottom="35dp"
+            android:padding="10dp"
+            android:src="@drawable/logo1" />
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

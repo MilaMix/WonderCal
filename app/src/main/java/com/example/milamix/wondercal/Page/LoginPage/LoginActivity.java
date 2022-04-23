@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.android.volley.VolleyError;
-import com.example.milamix.wondercal.Page.ForgotPage.ForgotActivity;
 import com.example.milamix.wondercal.Models.UserLoginModels;
 import com.example.milamix.wondercal.R;
 import com.example.milamix.wondercal.Page.RegisterPage.RegisterActivity;
@@ -97,11 +96,6 @@ public class LoginActivity extends AppCompatActivity {
 
     public void btn_Register(View view) {
         itn = new Intent(this, RegisterActivity.class);
-        startActivity(itn);
-    }
-
-    public void btn_Forgotpass(View view) {
-        itn = new Intent(this, ForgotActivity.class);
         startActivity(itn);
     }
 
