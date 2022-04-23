@@ -24,7 +24,7 @@
     </RelativeLayout>
     <LinearLayout
         android:id="@+id/HeadP"
-        android:layout_width="411dp"
+        android:layout_width="match_parent"
         android:layout_height="105dp"
         android:background="@drawable/topblue"
         android:orientation="horizontal"
@@ -168,7 +168,8 @@
         android:id="@+id/info_show_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="E-mail"
+        android:text="Name"
+        android:fontFamily="@font/butler_regular"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"

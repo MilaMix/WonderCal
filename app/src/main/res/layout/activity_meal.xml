@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:id="@+id/MealL"
-        android:layout_width="411dp"
+        android:layout_width="match_parent"
         android:layout_height="105dp"
         android:background="@drawable/topblue"
         android:orientation="horizontal"
