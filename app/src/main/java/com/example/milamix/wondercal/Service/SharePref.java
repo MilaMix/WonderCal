@@ -47,18 +47,6 @@ public class SharePref {
         return jsonObject;
     }
 
-    public void saveInt(String key, int value) {
-        SharedPreferences sharedPref = context.getSharedPreferences(PREF_NAME,Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putInt(key, value);
-        editor.commit();
-    }
-
-    public int getInt(String key) {
-        SharedPreferences sharedPref = context.getSharedPreferences(PREF_NAME,Context.MODE_PRIVATE);
-        return sharedPref.getInt(key, 0);
-    }
-
     public void saveString( String key, String value) {
         SharedPreferences sharedPref = context.getSharedPreferences(PREF_NAME,Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();

@@ -11,7 +11,6 @@ import java.util.List;
 
 public class MealModels{
     private List<Food> FoodModels = new ArrayList<>();
-
     public MealModels(JSONArray meal) throws JSONException {
         for(int i = 0 ; i< meal.length() ;i++){
             JSONObject obj = meal.getJSONObject(i);
@@ -23,11 +22,9 @@ public class MealModels{
                     ));
         }
     }
-
     public List<Food> getFoodModels() {
         return FoodModels;
     }
-
     public MealModels(String meal){
         if(meal.length() ==0){
             FoodModels.add(
@@ -49,7 +46,6 @@ public class MealModels{
             }
         }
     }
-
     public int getCal(){
         int sum = 0;
         for(int i = 0 ; i< FoodModels.size() ;i++){
@@ -57,7 +53,6 @@ public class MealModels{
         }
         return sum;
     }
-
     public String toString(){
         String str = "";
         for(int i = 0 ;i<this.FoodModels.size();i++){

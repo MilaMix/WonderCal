@@ -83,8 +83,6 @@ public class UserInfoModels {
         return weight;
     }
 
-    public String getGender(){return gender;}
-
     public String getBMR(){
         double bmr = 0;
         if(gender.equalsIgnoreCase("male")){
