@@ -88,22 +88,13 @@
         android:text="Register"
         android:textColor="@color/black"
         android:textSize="15sp"
+        android:onClick="btn_CreateAccount"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.2" />
-
-
-    android:text="Login"
-    android:textColor="@color/black"
-    android:textSize="15sp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/rela"
-    app:layout_constraintVertical_bias="0.060000002"
 
     <EditText
         android:id="@+id/editUsername"
